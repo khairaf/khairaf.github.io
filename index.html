@@ -1,46 +1,48 @@
 <!DOCTYPE html>
-<html>    
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Links Page</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-		<link rel="stylesheet" href="styles.css">
-    </head>
-    <body>       
-		<div class="container">
-        <!-- Logo -->
-        <img class="logo" src="logo.png" />
-
-        <!-- Featured -->
-        <h2>MERN STACK</h2>
-        <a class="featured" href="https://build.khairaf.now.sh/" target="_blank" title="Mongodb Express React Node.js">Book List App</a>
-		<h2>REACT MAPGL</h2>
-        <a class="featured" href="https://react-map-gl.khairaf.now.sh/" target="_blank" title="Mapbox React Map GL by Uber">Skateboard Park Locations</a>
-		
-		<br></br>
-        <!-- Popular Content -->
-        <h2>Vanilla Javascript</h2>
-
-        <a href="tasklist" target="_blank" title="JS, materialize, font-awesome">Task List App</a>
-		<a href="tracalorie" target="_blank" title="saved using localStorage">Tracking Calories App</a>	
-		<a href="booklist" target="_blank" title="add book, remove book list">Book List App</a>
-        <a href="loancalculator" target="_blank" title="Math, Loading display">Loan Calculator App</a>
-		<a href="numberguesser" target="_blank" title="just a mini game app">Number Guesser Game</a>	
-        <a href="profilescroller" target="_blank" title="Bootstrap, data is hardcoded">Profile Scroller App</a>
-		<a href="statepattern" target="_blank" title="click event listener">State Pattern (SPA Like)</a>
-		<a href="userform" target="_blank" title="JS Regex, validate name, zipcode, phone, email">User Form App</a>
-		<a href="#" title="doesn't work at the moment cuz wrong config on webpack">CRUD App</a>
-		
-
-        <!-- Channels -->
-        <h2>Find Me On</h2>
-
-        <div class="channels">
-            <a href="#">Up</a>
-            <a href="https://github.com/khairaf" target="_blank" title="github">GITHUB</a>
-            <a href="#">Up</a>
-        </div>
-        </div>
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Portofolio</title>
+  <meta name="description" content="My first PWA"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#00897B"/>
+</head>
+<body>
+  <!-- Navigasi -->
+  <nav class="#37474f blue-grey darken-3" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo" id="logo-container">&#9749;</a>
+      <a href="#" class="sidenav-trigger" data-target="nav-mobile">☰</a>
+      
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <ul class="sidenav" id="nav-mobile"></ul>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+  <div class="container" id="body-content"></div>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/nav.js"></script>
+  <!--
+  <script>
+	  // REGISTER SERVICE WORKER
+	  if ("serviceWorker" in navigator) {
+		window.addEventListener("load", function() {
+		  navigator.serviceWorker
+			.register("/service-worker.js")
+			.then(function() {
+			  //console.log("Pendaftaran ServiceWorker berhasil");
+			})
+			.catch(function() {
+			  //console.log("Pendaftaran ServiceWorker gagal");
+			});
+		});
+	  } else {
+		//console.log("ServiceWorker belum didukung browser ini.");
+	  }
+	</script>
+	-->
+</body>
 </html>
