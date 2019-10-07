@@ -1,4 +1,4 @@
-const CACHE_NAME = "withpwa-v17";
+const CACHE_NAME = "withpwa-v18";
 var urlsToCache = [
   "/",
   "/nav.html",
