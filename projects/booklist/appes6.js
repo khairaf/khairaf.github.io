@@ -18,7 +18,7 @@ class UI {
       <td>${book.isbn}</td>
       <td><a href="#" class="delete">X<a></td>
     `;
-  
+
     list.appendChild(row);
   }
 
@@ -131,7 +131,7 @@ document.getElementById('book-form').addEventListener('submit', function(e){
 
     // Show success
     ui.showAlert('Book Added!', 'success');
-  
+
     // Clear fields
     ui.clearFields();
   }

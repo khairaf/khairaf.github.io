@@ -82,7 +82,7 @@ document.getElementById('book-form').addEventListener('submit', function(e){
 
     // Show success
     ui.showAlert('Book Added!', 'success');
-  
+
     // Clear fields
     ui.clearFields();
   }

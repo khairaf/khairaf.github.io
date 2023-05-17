@@ -10,9 +10,8 @@ var urlsToCache = [
   "/js/materialize.min.js",
   "/js/nav.js",
   "/icon.png"
-  
 ];
- 
+
 self.addEventListener("install", function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
@@ -30,7 +29,7 @@ self.addEventListener("fetch", function(event) {
           //console.log("ServiceWorker: Gunakan aset dari cache: ", response.url);
           return response;
         }
- 
+
         //console.log(
         //  "ServiceWorker: Memuat aset dari server: ",
         //  event.request.url
