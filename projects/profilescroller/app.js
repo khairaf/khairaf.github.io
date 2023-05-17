@@ -60,8 +60,8 @@ function profileIterator(profiles) {
 
   return {
     next: function() {
-      return nextIndex < profiles.length ? 
-      { value: profiles[nextIndex++], done: false } : 
+      return nextIndex < profiles.length ?
+      { value: profiles[nextIndex++], done: false } :
       { done: true }
     }
   };

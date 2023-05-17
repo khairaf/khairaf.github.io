@@ -43,7 +43,7 @@ const StorageCtrl = (function(){
     },
     deleteItemFromStorage: function(id){
       let items = JSON.parse(localStorage.getItem('items'));
-      
+
       items.forEach(function(item, index){
         if(id === item.id){
           items.splice(index, 1);
@@ -186,7 +186,7 @@ const UICtrl = (function(){
     itemCaloriesInput: '#item-calories',
     totalCalories: '.total-calories'
   }
-  
+
   // Public methods
   return {
     populateItemList: function(items){
@@ -449,7 +449,7 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl){
 
     // Hide UL
     UICtrl.hideList();
-    
+
   }
 
   // Public methods
@@ -478,7 +478,7 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl){
       loadEventListeners();
     }
   }
-  
+
 })(ItemCtrl, StorageCtrl, UICtrl);
 
 // Initialize App
