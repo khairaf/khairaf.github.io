@@ -8,7 +8,7 @@ var urlsToCache = [
   "/pages/contact.html",
   "/css/materialize.min.css",
   "/js/materialize.min.js",
-  "/js/nav.js",
+  "/js/load-content.js",
   "/icon.png"
 ];
 
