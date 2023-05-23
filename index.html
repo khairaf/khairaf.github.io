@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <!-- Navigasi -->
+    <!-- Start of Navigation -->
     <nav class="#37474f blue-grey darken-3" role="navigation">
       <div class="nav-wrapper container">
         <!-- A cup of coffee icon -->
@@ -25,7 +25,8 @@
         <ul class="sidenav" id="nav-mobile"></ul>
       </div>
     </nav>
-    <!-- Akhir Navigasi -->
+    <!-- End of Navigation -->
+
     <div class="container" id="body-content"></div>
     <script src="js/materialize.min.js"></script>
     <script src="js/load-content.js"></script>
@@ -37,14 +38,14 @@
         navigator.serviceWorker
         .register("/service-worker.js")
         .then(function() {
-          //console.log("Pendaftaran ServiceWorker berhasil");
+          // console.log("Service worker registered successfully");
         })
         .catch(function() {
-          //console.log("Pendaftaran ServiceWorker gagal");
+          // console.log("Service worker failed to register");
         });
       });
       } else {
-      //console.log("ServiceWorker belum didukung browser ini.");
+      // console.log("Service worker not supported in this browser");
       }
     </script>
   </body>
