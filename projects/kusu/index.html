@@ -8,6 +8,7 @@
         --primary: #2c3e50;
         --accent: #27ae60;
         --bg: #f9f9fb;
+        --burgundy: #800020;
       }
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -17,6 +18,42 @@
         padding: 40px 20px;
         background: var(--bg);
         color: #333;
+      }
+      .dev-banner {
+        background-color: var(--burgundy);
+        color: white;
+        padding: 10px 45px;
+        text-align: center;
+        position: relative;
+        font-size: 0.85em;
+        z-index: 1000;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      .banner-close {
+        position: absolute;
+        left: 15px;
+        background: rgba(255,255,255,0.1);
+        border: none;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em;
+        transition: background 0.2s;
+      }
+      .banner-close:hover {
+        background: rgba(255,255,255,0.2);
+      }
+      .banner-content {
+        flex: 1;
       }
       .card {
         background: white;
@@ -58,7 +95,7 @@
         border-radius: 8px;
         padding: 16px;
         position: absolute;
-        z-index: 50;
+        z-index: 1100;
         bottom: 130%;
         left: 50%;
         transform: translateX(-50%);
@@ -94,14 +131,13 @@
         border-color: #1e293b transparent transparent transparent;
       }
       .tt-close {
-        position: absolute;
-        top: 8px;
-        right: 8px;
         background: none;
         border: none;
         color: #94a3b8;
         cursor: pointer;
         font-size: 1.2em;
+        padding: 0;
+        line-height: 1;
       }
       .tt-close:hover {
         color: white;
@@ -120,11 +156,11 @@
       }
       .tt-header {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #475569;
         padding-bottom: 8px;
         margin-bottom: 10px;
+        gap: 8px;
       }
       .tt-title {
         font-size: 0.8em;
@@ -267,6 +303,12 @@
     </style>
   </head>
   <body>
+    <div id="dev-banner" class="dev-banner">
+      <button class="banner-close" onclick="closeBanner()" title="Close banner">×</button>
+      <div class="banner-content">
+        <strong>Work in Progress:</strong> This project is under active development. Some content may be inaccurate or incomplete. We appreciate your patience as we improve it.
+      </div>
+    </div>
     <h1>Salat Fajr Recitation Guide</h1>
     <div id="nav" class="nav-bar"></div>
     <div id="sections"></div>
@@ -374,9 +416,9 @@
                                 ) => `<span class="word-wrapper" onclick="toggleTooltip(event)">
                                 <span class="word-text">${w.a}</span>
                                 <div class="tooltip">
-                                    <button class="tt-close" onclick="closeTooltip(event)">×</button>
                                     <div class="tt-header">
-                                        <span class="tt-title">Pronunciation</span>
+                                        <button class="tt-close" onclick="closeTooltip(event)">×</button>
+                                        <span class="tt-title" style="margin-left: 10px; flex: 1;">Pronunciation</span>
                                         <button class="play-pronunciation" onclick="playWordAudio()">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                                         </button>
@@ -397,7 +439,7 @@
                         <div class="audio-player-wrapper"></div>
                         <p><strong>Translation:</strong> ${sec.fullTrans}</p>
                         <div class="grid">
-                            ${sec.words.map((w) => `<div class="word-cell">${w.a}<br><small>${w.t}</small></div>`).join("")}
+                            ${sec.words.map((w) => `<div class="word-cell">${w.a}<br><small>EN: ${w.m}<br>MY: ${w.m}</small></div>`).join("")}
                         </div>
                     </div>
                 `;
@@ -424,7 +466,7 @@
       }
 
       function closeTooltip(e) {
-        e.currentTarget.parentElement.classList.remove("active");
+        e.currentTarget.closest(".tooltip").classList.remove("active");
         e.stopPropagation();
       }
 
@@ -446,6 +488,10 @@
 
       function check() {
         alert("Feature coming soon!");
+      }
+
+      function closeBanner() {
+        document.getElementById("dev-banner").style.display = "none";
       }
 
       render("Takbir");
