@@ -31,12 +31,12 @@
         margin-bottom: 20px;
         display: flex;
         align-items: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
       .banner-close {
         position: absolute;
         left: 15px;
-        background: rgba(255,255,255,0.1);
+        background: rgba(255, 255, 255, 0.1);
         border: none;
         color: white;
         width: 24px;
@@ -50,7 +50,7 @@
         transition: background 0.2s;
       }
       .banner-close:hover {
-        background: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.2);
       }
       .banner-content {
         flex: 1;
@@ -261,6 +261,12 @@
         cursor: pointer;
         height: 6px;
       }
+      .volume-bar {
+        width: 80px;
+        accent-color: var(--primary);
+        cursor: pointer;
+        height: 6px;
+      }
       .time-display {
         font-family: monospace;
         font-size: 0.9em;
@@ -300,13 +306,125 @@
         background: var(--primary);
         color: white;
       }
+      /* Quiz Styles */
+      .quiz-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .quiz-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .progress-container {
+        flex-grow: 1;
+        height: 10px;
+        background: #eee;
+        border-radius: 5px;
+        margin: 0 15px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%;
+        background: var(--accent);
+        width: 0%;
+        transition: width 0.3s;
+      }
+      .question-card {
+        text-align: center;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 25px;
+      }
+      .question-arabic {
+        font-size: 3em;
+        margin-bottom: 10px;
+      }
+      .question-trans {
+        color: #666;
+        font-style: italic;
+        font-size: 1.2em;
+      }
+      .options-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .option-btn {
+        padding: 15px;
+        font-size: 1.1em;
+        border: 2px solid #eee;
+        border-radius: 10px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+      }
+      .option-btn:hover:not(:disabled) {
+        border-color: var(--accent);
+        background: #f0fff4;
+      }
+      .option-btn.correct {
+        background: #27ae60;
+        color: white;
+        border-color: #27ae60;
+      }
+      .option-btn.incorrect {
+        background: #e74c3c;
+        color: white;
+        border-color: #e74c3c;
+      }
+      .option-btn:disabled {
+        cursor: default;
+      }
+      .feedback-area {
+        margin-top: 20px;
+        text-align: center;
+        min-height: 50px;
+        font-weight: bold;
+      }
+      .result-screen {
+        text-align: center;
+        padding: 40px;
+      }
+      .result-score {
+        font-size: 4em;
+        color: var(--accent);
+        font-weight: bold;
+        margin: 20px 0;
+      }
+      .retry-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .retry-btn:hover {
+        background: #34495e;
+      }
+      @media (max-width: 600px) {
+        .options-grid {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
     <div id="dev-banner" class="dev-banner">
-      <button class="banner-close" onclick="closeBanner()" title="Close banner">×</button>
+      <button class="banner-close" onclick="closeBanner()" title="Close banner">
+        ×
+      </button>
       <div class="banner-content">
-        <strong>Work in Progress:</strong> This project is under active development. Some content may be inaccurate or incomplete. We appreciate your patience as we improve it.
+        <strong>Work in Progress:</strong> This project is under active
+        development. Some content may be inaccurate or incomplete. We appreciate
+        your patience as we improve it.
       </div>
     </div>
     <h1>Salat Fajr Recitation Guide</h1>
@@ -317,17 +435,18 @@
       const sections = {
         Takbir: {
           title: "Takbiratul Ihram",
-          arabic: "الله أكبر",
-          fullTrans: "Allah is the Greatest.",
+          arabic: "اللَّهُ أَكْبَرُ",
+          fullTrans: "Allah is the Greatest. Allah Maha Besar.",
           audio: "ruku.mp3",
           words: [
+            { a: "اللَّهُ", t: "Allahu", m: "Allah", e: "God", p: "Throat" },
             {
-              a: "الله",
-              t: "Allahu",
-              m: "God",
-              p: "Start from throat, clear 'A', followed by double 'L' with tongue tip touching upper palate",
+              a: "أَكْبَرُ",
+              t: "Akbar",
+              m: "Maha Besar",
+              e: "Greater",
+              p: "Throat",
             },
-            { a: "أكبر", t: "Akbar", m: "Greater", p: "Throat" },
           ],
         },
         Fatihah: {
@@ -336,10 +455,42 @@
           fullTrans: "All praise is due to Allah.",
           audio: "ruku.mp3",
           words: [
-            { a: "الحمد", t: "Alhamdu", m: "Praise", p: "Throat" },
-            { a: "لله", t: "Lillahi", m: "to Allah", p: "Throat" },
+            { a: "الحمد", t: "Alhamdu", m: "Segala puji", e: "Praise", p: "H" },
+            { a: "لله", t: "Lillahi", m: "bagi Allah", e: "to Allah", p: "L" },
+            { a: "الرحمن", t: "Ar-Rahman", m: "Maha Pemurah", e: "Most Gracious", p: "R" },
+            { a: "الرحيم", t: "Ar-Rahim", m: "Maha Penyayang", e: "Most Merciful", p: "R" },
+            { a: "مالك", t: "Maliki", m: "Pemerintah", e: "Master", p: "M" },
+            { a: "يوم", t: "Yawmi", m: "Hari", e: "Day", p: "Y" },
+            { a: "الدين", t: "Ad-Din", m: "Pembalasan", e: "Judgment", p: "D" },
           ],
         },
+        Ruku: {
+          title: "Ruku' (Bowing)",
+          arabic: "سُبْحَانَ رَبِّيَ الْعَظِيمِ وَبِحَمْدِهِ",
+          fullTrans: "Glory be to my Lord the Supreme, and by His praise.",
+          audio: "ruku.mp3",
+          words: [
+            { a: "سُبْحَانَ", t: "Subhana", m: "Maha Suci", e: "Glory be", p: "S" },
+            { a: "رَبِّيَ", t: "Rabbiya", m: "Tuhanku", e: "my Lord", p: "R" },
+            { a: "الْعَظِيمِ", t: "Al-Azim", m: "Maha Agung", e: "the Supreme", p: "A" },
+          ],
+        },
+        Sajdah: {
+          title: "Sajdah (Prostration)",
+          arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ",
+          fullTrans: "Glory be to my Lord the Most High, and by His praise.",
+          audio: "ruku.mp3",
+          words: [
+            { a: "الْأَعْلَى", t: "Al-A'la", m: "Maha Tinggi", e: "the Most High", p: "A" },
+          ],
+        },
+      };
+
+      let quizState = {
+        questions: [],
+        currentIndex: 0,
+        score: 0,
+        canAnswer: true,
       };
 
       function formatTime(s) {
@@ -356,6 +507,7 @@
                     <button class="play-pause-btn">▶</button>
                     <input type="range" class="seek-bar" value="0" min="0" max="${duration}" step="0.1">
                     <span class="time-display">0:00 / ${formatTime(duration)}</span>
+                    <input type="range" class="volume-bar" min="0" max="1" step="0.01" value="1">
                 </div>
                 <div class="status"><div class="pulsing"></div> <span>Ready</span></div>
             `;
@@ -364,6 +516,9 @@
         const timeDisp = wrapper.querySelector(".time-display");
         const pulse = wrapper.querySelector(".pulsing");
         const statusText = wrapper.querySelector(".status span");
+        const volumeBar = wrapper.querySelector(".volume-bar");
+
+        audio.volume = volumeBar.value; // Set initial volume
 
         audio.onended = () => {
           btn.classList.remove("playing");
@@ -377,6 +532,7 @@
           timeDisp.innerText = `${formatTime(audio.currentTime)} / ${formatTime(duration)}`;
         };
         seek.oninput = (e) => (audio.currentTime = e.target.value);
+        volumeBar.oninput = (e) => (audio.volume = e.target.value); // Volume control
         btn.onclick = () => {
           if (audio.paused) {
             audio.play();
@@ -398,11 +554,131 @@
         new Audio("pronounce.mp3").play();
       }
 
+      function initQuiz() {
+        const allWords = [];
+        Object.values(sections).forEach((sec) => {
+          sec.words.forEach((w) => {
+            allWords.push({ ...w, sectionTitle: sec.title });
+          });
+        });
+
+        // Shuffle and pick 10
+        const shuffled = allWords.sort(() => 0.5 - Math.random());
+        quizState.questions = shuffled.slice(0, 10).map((word) => {
+          const options = [word.m];
+          const distractors = allWords
+            .filter((w) => w.m !== word.m)
+            .map((w) => w.m);
+          const uniqueDistractors = [...new Set(distractors)];
+          
+          while (options.length < 4 && uniqueDistractors.length > 0) {
+            const idx = Math.floor(Math.random() * uniqueDistractors.length);
+            options.push(uniqueDistractors.splice(idx, 1)[0]);
+          }
+          
+          return {
+            ...word,
+            options: options.sort(() => 0.5 - Math.random()),
+          };
+        });
+
+        quizState.currentIndex = 0;
+        quizState.score = 0;
+        quizState.canAnswer = true;
+        renderQuiz();
+      }
+
+      function renderQuiz() {
+        const container = document.getElementById("sections");
+        const q = quizState.questions[quizState.currentIndex];
+        const progress =
+          ((quizState.currentIndex + 1) / quizState.questions.length) * 100;
+
+        container.innerHTML = `
+          <div class="quiz-container">
+            <div class="quiz-header">
+              <span>Question ${quizState.currentIndex + 1} of ${quizState.questions.length}</span>
+              <div class="progress-container">
+                <div class="progress-bar" style="width: ${progress}%"></div>
+              </div>
+              <span>Score: ${quizState.score}</span>
+            </div>
+            <div class="question-card">
+              <div class="question-arabic">${q.a}</div>
+              <div class="question-trans">${q.t}</div>
+              <p>What is the meaning of this word?</p>
+            </div>
+            <div class="options-grid">
+              ${q.options
+                .map(
+                  (opt, i) => `
+                <button class="option-btn" onclick="checkAnswer(${i})">${opt}</button>
+              `,
+                )
+                .join("")}
+            </div>
+            <div class="feedback-area" id="feedback"></div>
+          </div>
+        `;
+      }
+
+      function checkAnswer(idx) {
+        if (!quizState.canAnswer) return;
+        quizState.canAnswer = false;
+
+        const q = quizState.questions[quizState.currentIndex];
+        const selected = q.options[idx];
+        const buttons = document.querySelectorAll(".option-btn");
+        const feedback = document.getElementById("feedback");
+
+        if (selected === q.m) {
+          quizState.score++;
+          buttons[idx].classList.add("correct");
+          feedback.innerHTML = `<span style="color: var(--accent)">✨ Correct! ${q.a} means ${q.m}.</span>`;
+        } else {
+          buttons[idx].classList.add("incorrect");
+          // Find correct one
+          buttons.forEach((btn, i) => {
+            if (q.options[i] === q.m) btn.classList.add("correct");
+          });
+          feedback.innerHTML = `<span style="color: #e74c3c">❌ Incorrect. ${q.a} means ${q.m}.</span>`;
+        }
+
+        setTimeout(() => {
+          quizState.currentIndex++;
+          if (quizState.currentIndex < quizState.questions.length) {
+            quizState.canAnswer = true;
+            renderQuiz();
+          } else {
+            showResults();
+          }
+        }, 2000);
+      }
+
+      function showResults() {
+        const container = document.getElementById("sections");
+        const percentage = Math.round(
+          (quizState.score / quizState.questions.length) * 100,
+        );
+        let message = "Excellent! You have a great grasp of the meanings.";
+        if (percentage < 80) message = "Good job! Keep practicing to improve.";
+        if (percentage < 50) message = "Keep learning! Consistency is key.";
+
+        container.innerHTML = `
+          <div class="card result-screen">
+            <h2>Quiz Completed!</h2>
+            <div class="result-score">${percentage}%</div>
+            <p>You scored ${quizState.score} out of ${quizState.questions.length}</p>
+            <p>${message}</p>
+            <button class="retry-btn" onclick="initQuiz()">Try Again</button>
+          </div>
+        `;
+      }
+
       function render(key) {
         const container = document.getElementById("sections");
         if (key === "quiz") {
-          container.innerHTML =
-            '<div class="card"><h2>Practice Mode</h2><p>Guess the meaning!</p></div>';
+          initQuiz();
         } else {
           const sec = sections[key];
           container.innerHTML = `
@@ -426,7 +702,7 @@
                                     <p class="tt-label">Transliteration:</p>
                                     <p class="tt-val">${w.t}</p>
                                     <div class="tt-grid">
-                                        <div class="tt-grid-item"><p class="tt-label">🇬🇧 English:</p><p class="tt-val-sm">${w.m}</p></div>
+                                        <div class="tt-grid-item"><p class="tt-label">🇬🇧 English:</p><p class="tt-val-sm">${w.e}</p></div>
                                         <div class="tt-grid-item"><p class="tt-label">🇲🇾 Melayu:</p><p class="tt-val-sm">${w.m}</p></div>
                                     </div>
                                     <p class="tt-label">Makhraj Guide:</p>
@@ -439,7 +715,7 @@
                         <div class="audio-player-wrapper"></div>
                         <p><strong>Translation:</strong> ${sec.fullTrans}</p>
                         <div class="grid">
-                            ${sec.words.map((w) => `<div class="word-cell">${w.a}<br><small>EN: ${w.m}<br>MY: ${w.m}</small></div>`).join("")}
+                            ${sec.words.map((w) => `<div class="word-cell">${w.a}<br><small>EN: ${w.e}<br>MY: ${w.m}</small></div>`).join("")}
                         </div>
                     </div>
                 `;
@@ -485,10 +761,6 @@
       qBtn.innerText = "Quiz Mode";
       qBtn.onclick = () => render("quiz");
       nav.appendChild(qBtn);
-
-      function check() {
-        alert("Feature coming soon!");
-      }
 
       function closeBanner() {
         document.getElementById("dev-banner").style.display = "none";
