@@ -137,6 +137,7 @@
       .tooltip {
         visibility: hidden;
         width: 300px;
+        max-width: 90vw;
         background: #1e293b;
         color: white;
         border-radius: 8px;
@@ -152,6 +153,7 @@
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
         font-size: 0.9em;
         pointer-events: none;
+        box-sizing: border-box;
       }
       .tooltip.active {
         visibility: visible;
@@ -322,7 +324,7 @@
       }
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 15px;
         margin-top: 25px;
         padding-top: 20px;
@@ -330,7 +332,6 @@
       }
       .word-cell {
         perspective: 1000px;
-        height: 100px;
         cursor: pointer;
       }
       .word-cell-inner {
@@ -340,15 +341,14 @@
         text-align: center;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform-style: preserve-3d;
+        display: grid;
       }
       .word-cell.flipped .word-cell-inner {
         transform: rotateY(180deg);
       }
       .word-cell-front,
       .word-cell-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
+        grid-area: 1 / 1;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         border-radius: 8px;
@@ -356,14 +356,17 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 10px;
+        padding: 15px;
         box-sizing: border-box;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        min-height: 120px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
       }
       .word-cell-front {
         background: #f0f4f8;
         color: var(--primary);
-        font-size: 1.4em;
+        font-size: 1.2em;
         font-weight: 500;
       }
       .word-cell-back {
