@@ -2,6 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn and practice Salat Fajr recitations with transliteration, translation, and pronunciation guides. Includes an interactive quiz."
+    />
+    <meta
+      name="keywords"
+      content="Salat Fajr, prayer guide, Arabic recitation, Al-Fatihah, Takbiratul Ihram, Ruku, Sajdah, Islamic prayer, learn Arabic, Quran learning, Muslim"
+    />
+    <meta name="author" content="Your Name or Organization" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://khairaf.github.io/projects/kusu/" />
+    <meta property="og:title" content="Salat Fajr Recitation Guide" />
+    <meta
+      property="og:description"
+      content="Learn and practice Salat Fajr recitations with transliteration, translation, and pronunciation guides. Includes an interactive quiz."
+    />
+    <meta
+      property="og:image"
+      content="https://khairaf.github.io/projects/kusu/social-share.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://khairaf.github.io/projects/kusu/"
+    />
+    <meta property="twitter:title" content="Salat Fajr Recitation Guide" />
+    <meta
+      property="twitter:description"
+      content="Learn and practice Salat Fajr recitations with transliteration, translation, and pronunciation guides. Includes an interactive quiz."
+    />
+    <meta
+      property="twitter:image"
+      content="https://khairaf.github.io/projects/kusu/social-share.jpg"
+    />
+
     <title>Salat Fajr Recitation Guide</title>
     <style>
       :root {
@@ -414,6 +454,34 @@
           grid-template-columns: 1fr;
         }
       }
+      /* Tajwid Coloring */
+      .quran-text {
+        font-size: 2.5em; /* Adjust as needed */
+        direction: rtl;
+        margin: 15px 0;
+        line-height: 2.0; /* For better readability with colored spans */
+      }
+      .ham_wasl, .slnt, .end {
+        color: #aaa; /* Grey */
+      }
+      .laam_shamsiyah {
+        color: #856262; /* Brownish-grey */
+      }
+      .madda_normal {
+        color: #537fff; /* Blue */
+      }
+      .madda_permissible {
+        color: #4050ff; /* Darker Blue */
+      }
+      .ghunnah {
+        color: #ff7e1e; /* Orange */
+      }
+      .qalaqah {
+        color: #dd0008; /* Red */
+      }
+      .ikhafa {
+        color: #9400a8; /* Purple */
+      }
     </style>
   </head>
   <body>
@@ -451,9 +519,31 @@
         },
         Fatihah: {
           title: "Surah Al-Fatihah",
-          arabic: "الحمد لله",
+          tajweedArabic: `
+            <div class="quran-text arabic-uthmani-tajweed">
+              بِسْمِ <span class="ham_wasl">ٱ</span>للَّهِ <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّحْمَ<span class="madda_normal">ـٰ</span>نِ <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّح<span class="madda_permissible">ِي</span>مِ <span class="end">١</span>
+            </div>
+            <div class="quran-text arabic-uthmani-tajweed">
+              <span class="ham_wasl">ٱ</span>لْحَمْدُ لِلَّهِ رَبِّ <span class="ham_wasl">ٱ</span>لْعَ<span class="madda_normal">ـٰ</span>لَم<span class="madda_permissible">ِي</span>نَ <span class="end">٢</span>
+            </div>
+            <div class="quran-text arabic-uthmani-tajweed">
+              <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّحْمَ<span class="madda_normal">ـٰ</span>نِ <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّح<span class="madda_permissible">ِي</span>مِ <span class="end">٣</span>
+            </div>
+            <div class="quran-text arabic-uthmani-tajweed">
+              مَ<span class="madda_normal">ـٰ</span>لِكِ يَوْمِ <span class="ham_wasl">ٱ</span>لد<span class="madda_permissible">ِّي</span>نِ <span class="end">٤</span>
+            </div>
+            <div class="quran-text arabic-uthmani-tajweed">
+              إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَع<span class="madda_permissible">ِي</span>نُ <span class="end">٥</span>
+            </div>
+            <div class="quran-text arabic-uthmani-tajweed">
+              <span class="ham_wasl">ٱ</span>هْد<span class="madda_permissible">ِ</span>نَا <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>ص<span class="ghunnah">ِّرَٰ</span>طَ <span class="ham_wasl">ٱ</span>لْمُسْتَق<span class="madda_permissible">ِي</span>مَ <span class="end">٦</span>
+            </div>
+            <div class="quran-text arabic-uthmani-tajweed">
+              ص<span class="ghunnah">ِرَٰ</span>طَ <span class="ham_wasl">ٱ</span>لَّذ<span class="madda_permissible">ِي</span>نَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ <span class="ham_wasl">ٱ</span>لْمَغْض<span class="madda_permissible">ُو</span>بِ عَلَيْهِمْ وَلَا <span class="ham_wasl">ٱ</span>لضَّ<span class="madda_normal">آ</span>ل<span class="madda_permissible">ِّي</span>نَ <span class="end">٧</span>
+            </div>
+          `,
           fullTrans: "All praise is due to Allah.",
-          audio: "ruku.mp3",
+          audio: "pronounce.mp3",
           words: [
             { a: "الحمد", t: "Alhamdu", m: "Segala puji", e: "Praise", p: "H" },
             { a: "لله", t: "Lillahi", m: "bagi Allah", e: "to Allah", p: "L" },
@@ -684,7 +774,7 @@
           container.innerHTML = `
                     <div class="card">
                         <h2>${sec.title}</h2>
-                        <div class="arabic-text">
+                        ${sec.tajweedArabic ? sec.tajweedArabic : `<div class="arabic-text">
                             ${sec.words
                               .map(
                                 (
@@ -711,7 +801,7 @@
                             </span>`,
                               )
                               .join(" ")}
-                        </div>
+                        </div>`}
                         <div class="audio-player-wrapper"></div>
                         <p><strong>Translation:</strong> ${sec.fullTrans}</p>
                         <div class="grid">
