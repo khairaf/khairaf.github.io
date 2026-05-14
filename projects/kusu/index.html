@@ -15,7 +15,10 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://khairaf.github.io/projects/kusu/" />
+    <meta
+      property="og:url"
+      content="https://khairaf.github.io/projects/kusu/"
+    />
     <meta property="og:title" content="Salat Fajr Recitation Guide" />
     <meta
       property="og:description"
@@ -127,6 +130,10 @@
       .word-wrapper:hover .word-text {
         color: var(--accent);
       }
+      .word-wrapper:hover span {
+        color: var(--accent);
+      }
+
       .tooltip {
         visibility: hidden;
         width: 300px;
@@ -322,11 +329,51 @@
         border-top: 1px solid #eee;
       }
       .word-cell {
+        perspective: 1000px;
+        height: 100px;
+        cursor: pointer;
+      }
+      .word-cell-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
         text-align: center;
-        background: #f0f4f8;
-        padding: 10px;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+      }
+      .word-cell.flipped .word-cell-inner {
+        transform: rotateY(180deg);
+      }
+      .word-cell-front,
+      .word-cell-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
         border-radius: 8px;
-        font-size: 0.9em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        box-sizing: border-box;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      .word-cell-front {
+        background: #f0f4f8;
+        color: var(--primary);
+        font-size: 1.4em;
+        font-weight: 500;
+      }
+      .word-cell-back {
+        background: var(--primary);
+        color: white;
+        transform: rotateY(180deg);
+        font-size: 0.85em;
+      }
+      .word-cell-back small {
+        line-height: 1.4;
       }
       .nav-bar {
         display: flex;
@@ -459,9 +506,11 @@
         font-size: 2.5em; /* Adjust as needed */
         direction: rtl;
         margin: 15px 0;
-        line-height: 2.0; /* For better readability with colored spans */
+        line-height: 2; /* For better readability with colored spans */
       }
-      .ham_wasl, .slnt, .end {
+      .ham_wasl,
+      .slnt,
+      .end {
         color: #aaa; /* Grey */
       }
       .laam_shamsiyah {
@@ -472,6 +521,9 @@
       }
       .madda_permissible {
         color: #4050ff; /* Darker Blue */
+      }
+      .madda_necessary {
+        color: #000ebc;
       }
       .ghunnah {
         color: #ff7e1e; /* Orange */
@@ -519,39 +571,225 @@
         },
         Fatihah: {
           title: "Surah Al-Fatihah",
-          tajweedArabic: `
-            <div class="quran-text arabic-uthmani-tajweed">
-              بِسْمِ <span class="ham_wasl">ٱ</span>للَّهِ <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّحْمَ<span class="madda_normal">ـٰ</span>نِ <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّح<span class="madda_permissible">ِي</span>مِ <span class="end">١</span>
-            </div>
-            <div class="quran-text arabic-uthmani-tajweed">
-              <span class="ham_wasl">ٱ</span>لْحَمْدُ لِلَّهِ رَبِّ <span class="ham_wasl">ٱ</span>لْعَ<span class="madda_normal">ـٰ</span>لَم<span class="madda_permissible">ِي</span>نَ <span class="end">٢</span>
-            </div>
-            <div class="quran-text arabic-uthmani-tajweed">
-              <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّحْمَ<span class="madda_normal">ـٰ</span>نِ <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّح<span class="madda_permissible">ِي</span>مِ <span class="end">٣</span>
-            </div>
-            <div class="quran-text arabic-uthmani-tajweed">
-              مَ<span class="madda_normal">ـٰ</span>لِكِ يَوْمِ <span class="ham_wasl">ٱ</span>لد<span class="madda_permissible">ِّي</span>نِ <span class="end">٤</span>
-            </div>
-            <div class="quran-text arabic-uthmani-tajweed">
-              إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَع<span class="madda_permissible">ِي</span>نُ <span class="end">٥</span>
-            </div>
-            <div class="quran-text arabic-uthmani-tajweed">
-              <span class="ham_wasl">ٱ</span>هْد<span class="madda_permissible">ِ</span>نَا <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>ص<span class="ghunnah">ِّرَٰ</span>طَ <span class="ham_wasl">ٱ</span>لْمُسْتَق<span class="madda_permissible">ِي</span>مَ <span class="end">٦</span>
-            </div>
-            <div class="quran-text arabic-uthmani-tajweed">
-              ص<span class="ghunnah">ِرَٰ</span>طَ <span class="ham_wasl">ٱ</span>لَّذ<span class="madda_permissible">ِي</span>نَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ <span class="ham_wasl">ٱ</span>لْمَغْض<span class="madda_permissible">ُو</span>بِ عَلَيْهِمْ وَلَا <span class="ham_wasl">ٱ</span>لضَّ<span class="madda_normal">آ</span>ل<span class="madda_permissible">ِّي</span>نَ <span class="end">٧</span>
-            </div>
-          `,
           fullTrans: "All praise is due to Allah.",
           audio: "pronounce.mp3",
           words: [
-            { a: "الحمد", t: "Alhamdu", m: "Segala puji", e: "Praise", p: "H" },
-            { a: "لله", t: "Lillahi", m: "bagi Allah", e: "to Allah", p: "L" },
-            { a: "الرحمن", t: "Ar-Rahman", m: "Maha Pemurah", e: "Most Gracious", p: "R" },
-            { a: "الرحيم", t: "Ar-Rahim", m: "Maha Penyayang", e: "Most Merciful", p: "R" },
-            { a: "مالك", t: "Maliki", m: "Pemerintah", e: "Master", p: "M" },
-            { a: "يوم", t: "Yawmi", m: "Hari", e: "Day", p: "Y" },
-            { a: "الدين", t: "Ad-Din", m: "Pembalasan", e: "Judgment", p: "D" },
+            {
+              a: "بِسْمِ",
+              t: "Bismi",
+              m: "Dengan nama",
+              e: "In the name",
+              p: "Ba from lips, Seen from teeth",
+            },
+            {
+              a: "<span class=\'ham_wasl\'>ٱ</span>للَّهِ",
+              a1: "ham_wasl",
+              t: "Allāh",
+              m: "Allah",
+              e: "Allah",
+              p: "Lam from tongue touching gums, Ha from throat",
+            },
+            {
+              a1: "ٱلرَّحْمَـٰنِ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّحْمَ<span class="madda_normal">ـٰ</span>نِ `,
+              t: "Ar-Raḥmān",
+              m: "Yang Maha Pemurah",
+              e: "The Most Gracious",
+              p: "Ra from tongue tip, Ha from throat",
+            },
+            {
+              // a: "ٱلرَّحِيمِ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّح<span class="madda_permissible">ِي</span>مِ `,
+              t: "Ar-Raḥīm",
+              m: "Yang Maha Penyayang",
+              e: "The Most Merciful",
+              p: "Ra from tongue tip, Ha from throat",
+            },
+            {
+              a: `<span class="end">١</span>`,
+            },
+            {
+              a: "ٱلْحَمْدُ",
+              t: "Al-Ḥamdu",
+              m: "Segala puji",
+              e: "All praise",
+              p: "Ha from throat, Dal from tongue tip",
+            },
+            {
+              a: "لِلَّهِ",
+              t: "Lillāh",
+              m: "bagi Allah",
+              e: "is due to Allah",
+              p: "Lam from tongue touching gums",
+            },
+            {
+              a: "رَبِّ",
+              t: "Rabb",
+              m: "Tuhan",
+              e: "Lord",
+              p: "Ra from tongue tip, Ba from lips",
+            },
+            {
+              // a: "ٱلْعَـٰلَمِين",
+              a: `<span class="ham_wasl">ٱ</span>لْعَ<span class="madda_normal">ـٰ</span>لَم<span class="madda_permissible">ِي</span>نَ `,
+              t: "Al-ʿĀlamīn",
+              m: "sekalian alam",
+              e: "of the worlds",
+              p: "ʿAin from throat, Lam from tongue",
+            },
+            {
+              a: `<span class="end">٢</span>`,
+            },
+            {
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّحْمَ<span class="madda_normal">ـٰ</span>نِ <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّح<span class="madda_permissible">ِي</span>مِ <span class="end">٣</span>`,
+              t: "Ar-Raḥmānir-Raḥīm",
+              m: "Yang Maha Pemurah, Yang Maha Penyayang",
+              e: "The Most Gracious, The Most Merciful",
+              p: "Ra from tongue tip, Ha from throat, Mim from lips, Nun from tongue tip, Ya from palate",
+            },
+            {
+              // a: "مَـٰلِكِ",
+              a: ` مَ<span class="madda_normal">ـٰ</span>لِكِ `,
+              t: "Māliki",
+              m: "Pemilik",
+              e: "Master",
+              p: "Mim from lips, Lam from tongue",
+            },
+            {
+              a: "يَوْمِ",
+              t: "Yawmi",
+              m: "Hari",
+              e: "of the Day",
+              p: "Ya from palate, Mim from lips",
+            },
+            {
+              // a: "ٱلدِّينِ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>دّ<span class="madda_permissible">ِي</span>نِ <span class="end">٤</span>`,
+              t: "Ad-Dīn",
+              m: "Agama",
+              e: "of Judgment",
+              p: "Dal from tongue tip, Nun from tongue tip",
+            },
+            {
+              a: "إِيَّاكَ",
+              t: "Iyyāka",
+              m: "Hanya kepada-Mu",
+              e: "You alone",
+              p: "Ya from palate, Kaf from tongue root",
+            },
+            {
+              a: "نَعْبُدُ",
+              t: "Naʿbudu",
+              m: "kami menyembah",
+              e: "we worship",
+              p: "Nun from tongue tip, ʿAin from throat",
+            },
+            {
+              a: "وَإِيَّاكَ",
+              t: "Wa-Iyyāka",
+              m: "dan hanya kepada-Mu",
+              e: "and You alone",
+              p: "Waw from lips, Ya from palate",
+            },
+            {
+              // a: "نَسْتَعِينُ",
+              a: ` نَسْتَع<span class="madda_permissible">ِي</span>نُ <span class="end">٥</span>`,
+              t: "Nastaʿīn",
+              m: "kami mohon pertolongan",
+              e: "we ask for help",
+              p: "Nun from tongue tip, ʿAin from throat",
+            },
+            {
+              a: "ٱهْدِنَا",
+              t: "Ihdinā",
+              m: "Tunjukilah kami",
+              e: "Guide us",
+              p: "Ha from throat, Dal from tongue tip",
+            },
+            {
+              // a: "ٱلصِّرَٰطَ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>صِّر<span class="madda_normal">َٲ</span>طَ `,
+              t: "Aṣ-Ṣirāṭa",
+              m: "jalan",
+              e: "the straight path",
+              p: "Ṣad from tongue, Ra from tongue tip",
+            },
+            {
+              // a: "ٱلْمُسْتَقِيمَ",
+              a: `<span class="ham_wasl">ٱ</span>لْمُسْتَق<span class="madda_permissible">ِي</span>مَ <span class="end">٦</span>`,
+              t: "Al-Mustaqīm",
+              m: "yang lurus",
+              e: "the straight",
+              p: "Mim from lips, Qaf from tongue root",
+            },
+            {
+              // a: "صِرَٰطَ",
+              a: `صِر<span class="madda_normal">َٲ</span>طَ `,
+              t: "Ṣirāṭa",
+              m: "jalan",
+              e: "the path",
+              p: "Ṣad from tongue, Ra from tongue tip",
+            },
+            {
+              // a: "ٱلَّذِينَ",
+              // a: "<span class=\'ham_wasl\'>ٱ</span>لدين",
+              a: `<span class="ham_wasl">ٱ</span>لَّذِينَ`,
+              t: "Alladhīna",
+              m: "orang-orang yang",
+              e: "of those who",
+              p: "Lam from tongue, Dhal from tongue tip",
+            },
+            {
+              a: "أَنْعَمْتَ",
+              t: "Anʿamta",
+              m: "Engkau beri nikmat",
+              e: "You bestowed favor",
+              p: "ʿAin from throat, Mim from lips",
+            },
+            {
+              a: "عَلَيْهِمْ",
+              t: "ʿAlayhim",
+              m: "ke atas mereka",
+              e: "upon them",
+              p: "ʿAin from throat, Ha from throat",
+            },
+            {
+              a: "غَيْرِ",
+              t: "Ghayri",
+              m: "bukan",
+              e: "not",
+              p: "Ghayn from throat, Ra from tongue tip",
+            },
+            {
+              // a: "ٱلْمَغْضُوبِ",
+              a: `<span class="ham_wasl">ٱ</span>لْمَغْضُوبِ`,
+              t: "Al-Maghḍūbi",
+              m: "yang dimurkai",
+              e: "those who earned anger",
+              p: "Mim from lips, Ghayn from throat",
+            },
+            {
+              a: `عَلَيْهِمْ  `,
+              t: "ʿAlayhim",
+              m: "ke atas mereka",
+              e: "upon them",
+              p: "ʿAin from throat, Lam from tongue tip, Ha from throat, Mim from lips",
+            },
+            {
+              a: "وَلَا",
+              t: "Walā",
+              m: "dan bukan",
+              e: "nor",
+              p: "Waw from lips, Lam from tongue",
+            },
+            {
+              // a: "ٱلضَّآلِّينَ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>ضّ<span class="madda_necessary">َا</span>ٓلّ<span class="madda_permissible">ِي</span>نَ <span class="end">٧</span></div>`,
+              t: "Aḍ-Ḍāllīn",
+              m: "yang sesat",
+              e: "those who go astray",
+              p: "Ḍad from tongue side, Lam from tongue",
+            },
           ],
         },
         Ruku: {
@@ -560,9 +798,21 @@
           fullTrans: "Glory be to my Lord the Supreme, and by His praise.",
           audio: "ruku.mp3",
           words: [
-            { a: "سُبْحَانَ", t: "Subhana", m: "Maha Suci", e: "Glory be", p: "S" },
+            {
+              a: "سُبْحَانَ",
+              t: "Subhana",
+              m: "Maha Suci",
+              e: "Glory be",
+              p: "S",
+            },
             { a: "رَبِّيَ", t: "Rabbiya", m: "Tuhanku", e: "my Lord", p: "R" },
-            { a: "الْعَظِيمِ", t: "Al-Azim", m: "Maha Agung", e: "the Supreme", p: "A" },
+            {
+              a: "الْعَظِيمِ",
+              t: "Al-Azim",
+              m: "Maha Agung",
+              e: "the Supreme",
+              p: "A",
+            },
           ],
         },
         Sajdah: {
@@ -571,7 +821,13 @@
           fullTrans: "Glory be to my Lord the Most High, and by His praise.",
           audio: "ruku.mp3",
           words: [
-            { a: "الْأَعْلَى", t: "Al-A'la", m: "Maha Tinggi", e: "the Most High", p: "A" },
+            {
+              a: "الْأَعْلَى",
+              t: "Al-A'la",
+              m: "Maha Tinggi",
+              e: "the Most High",
+              p: "A",
+            },
           ],
         },
       };
@@ -593,14 +849,14 @@
         const audio = new Audio(sec.audio);
         const duration = sec.words.length * 2.5;
         wrapper.innerHTML = `
-                <div class="controls">
-                    <button class="play-pause-btn">▶</button>
-                    <input type="range" class="seek-bar" value="0" min="0" max="${duration}" step="0.1">
-                    <span class="time-display">0:00 / ${formatTime(duration)}</span>
-                    <input type="range" class="volume-bar" min="0" max="1" step="0.01" value="1">
-                </div>
-                <div class="status"><div class="pulsing"></div> <span>Ready</span></div>
-            `;
+                      <div class="controls">
+                          <button class="play-pause-btn">▶</button>
+                          <input type="range" class="seek-bar" value="0" min="0" max="${duration}" step="0.1">
+                          <span class="time-display">0:00 / ${formatTime(duration)}</span>
+                          <input type="range" class="volume-bar" min="0" max="1" step="0.01" value="1">
+                      </div>
+                      <div class="status"><div class="pulsing"></div> <span>Ready</span></div>
+                  `;
         const btn = wrapper.querySelector(".play-pause-btn");
         const seek = wrapper.querySelector(".seek-bar");
         const timeDisp = wrapper.querySelector(".time-display");
@@ -660,12 +916,12 @@
             .filter((w) => w.m !== word.m)
             .map((w) => w.m);
           const uniqueDistractors = [...new Set(distractors)];
-          
+
           while (options.length < 4 && uniqueDistractors.length > 0) {
             const idx = Math.floor(Math.random() * uniqueDistractors.length);
             options.push(uniqueDistractors.splice(idx, 1)[0]);
           }
-          
+
           return {
             ...word,
             options: options.sort(() => 0.5 - Math.random()),
@@ -685,31 +941,31 @@
           ((quizState.currentIndex + 1) / quizState.questions.length) * 100;
 
         container.innerHTML = `
-          <div class="quiz-container">
-            <div class="quiz-header">
-              <span>Question ${quizState.currentIndex + 1} of ${quizState.questions.length}</span>
-              <div class="progress-container">
-                <div class="progress-bar" style="width: ${progress}%"></div>
-              </div>
-              <span>Score: ${quizState.score}</span>
-            </div>
-            <div class="question-card">
-              <div class="question-arabic">${q.a}</div>
-              <div class="question-trans">${q.t}</div>
-              <p>What is the meaning of this word?</p>
-            </div>
-            <div class="options-grid">
-              ${q.options
-                .map(
-                  (opt, i) => `
-                <button class="option-btn" onclick="checkAnswer(${i})">${opt}</button>
-              `,
-                )
-                .join("")}
-            </div>
-            <div class="feedback-area" id="feedback"></div>
-          </div>
-        `;
+                <div class="quiz-container">
+                  <div class="quiz-header">
+                    <span>Question ${quizState.currentIndex + 1} of ${quizState.questions.length}</span>
+                    <div class="progress-container">
+                      <div class="progress-bar" style="width: ${progress}%"></div>
+                    </div>
+                    <span>Score: ${quizState.score}</span>
+                  </div>
+                  <div class="question-card">
+                    <div class="question-arabic">${q.a}</div>
+                    <div class="question-trans">${q.t}</div>
+                    <p>What is the meaning of this word?</p>
+                  </div>
+                  <div class="options-grid">
+                    ${q.options
+                      .map(
+                        (opt, i) => `
+                      <button class="option-btn" onclick="checkAnswer(${i})">${opt}</button>
+                    `,
+                      )
+                      .join("")}
+                  </div>
+                  <div class="feedback-area" id="feedback"></div>
+                </div>
+              `;
       }
 
       function checkAnswer(idx) {
@@ -755,14 +1011,14 @@
         if (percentage < 50) message = "Keep learning! Consistency is key.";
 
         container.innerHTML = `
-          <div class="card result-screen">
-            <h2>Quiz Completed!</h2>
-            <div class="result-score">${percentage}%</div>
-            <p>You scored ${quizState.score} out of ${quizState.questions.length}</p>
-            <p>${message}</p>
-            <button class="retry-btn" onclick="initQuiz()">Try Again</button>
-          </div>
-        `;
+                <div class="card result-screen">
+                  <h2>Quiz Completed!</h2>
+                  <div class="result-score">${percentage}%</div>
+                  <p>You scored ${quizState.score} out of ${quizState.questions.length}</p>
+                  <p>${message}</p>
+                  <button class="retry-btn" onclick="initQuiz()">Try Again</button>
+                </div>
+              `;
       }
 
       function render(key) {
@@ -772,43 +1028,59 @@
         } else {
           const sec = sections[key];
           container.innerHTML = `
-                    <div class="card">
-                        <h2>${sec.title}</h2>
-                        ${sec.tajweedArabic ? sec.tajweedArabic : `<div class="arabic-text">
-                            ${sec.words
-                              .map(
-                                (
-                                  w,
-                                ) => `<span class="word-wrapper" onclick="toggleTooltip(event)">
-                                <span class="word-text">${w.a}</span>
-                                <div class="tooltip">
-                                    <div class="tt-header">
-                                        <button class="tt-close" onclick="closeTooltip(event)">×</button>
-                                        <span class="tt-title" style="margin-left: 10px; flex: 1;">Pronunciation</span>
-                                        <button class="play-pronunciation" onclick="playWordAudio()">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                                        </button>
-                                    </div>
-                                    <p class="tt-label">Transliteration:</p>
-                                    <p class="tt-val">${w.t}</p>
-                                    <div class="tt-grid">
-                                        <div class="tt-grid-item"><p class="tt-label">🇬🇧 English:</p><p class="tt-val-sm">${w.e}</p></div>
-                                        <div class="tt-grid-item"><p class="tt-label">🇲🇾 Melayu:</p><p class="tt-val-sm">${w.m}</p></div>
-                                    </div>
-                                    <p class="tt-label">Makhraj Guide:</p>
-                                    <p class="tt-guide">${w.p}</p>
-                                </div>
-                            </span>`,
-                              )
-                              .join(" ")}
-                        </div>`}
-                        <div class="audio-player-wrapper"></div>
-                        <p><strong>Translation:</strong> ${sec.fullTrans}</p>
-                        <div class="grid">
-                            ${sec.words.map((w) => `<div class="word-cell">${w.a}<br><small>EN: ${w.e}<br>MY: ${w.m}</small></div>`).join("")}
-                        </div>
-                    </div>
-                `;
+                          <div class="card">
+                              <h2>${sec.title}</h2>
+                              <div class="arabic-text">
+          ${sec.words
+            .map(
+              (w) => `<span class="word-wrapper" onclick="toggleTooltip(event)">
+                      <span class="word-text">${w.a}</span>
+                      <div class="tooltip">
+                          <div class="tt-header">
+                              <button class="tt-close" onclick="closeTooltip(event)">×</button>
+                              <span class="tt-title" style="margin-left: 10px; flex: 1;">Pronunciation</span>
+                              <button class="play-pronunciation" onclick="playWordAudio()">
+                                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                              </button>
+                          </div>
+                          <p class="tt-label">Transliteration:</p>
+                          <p class="tt-val">${w.t}</p>
+                          <div class="tt-grid">
+                              <div class="tt-grid-item"><p class="tt-label">🇬🇧 English:</p><p class="tt-val-sm">${w.e}</p></div>
+                              <div class="tt-grid-item"><p class="tt-label">🇲🇾 Melayu:</p><p class="tt-val-sm">${w.m}</p></div>
+                          </div>
+                          <p class="tt-label">Makhraj Guide:</p>
+                          <p class="tt-guide">${w.p}</p>
+                      </div>
+                  </span>`,
+            )
+            .join(" ")}
+      </div>
+                              <div class="audio-player-wrapper"></div>
+                              <p><strong>Translation:</strong> ${sec.fullTrans}</p>
+                              <p style="text-align: center; font-size: 0.85em; color: #7f8c8d; margin: 20px 0 0 0;">
+                                  💡 Tip: Click the cards below to flip and see meanings!
+                              </p>
+                              <div class="grid">
+                                  ${sec.words
+                                    .map(
+                                      (w) => `
+                                      <div class="word-cell" onclick="this.classList.toggle('flipped')">
+                                          <div class="word-cell-inner">
+                                              <div class="word-cell-front">
+                                                  <span>${w.a}</span>
+                                              </div>
+                                              <div class="word-cell-back">
+                                                  <small><strong>EN:</strong> ${w.e}<br><strong>MY:</strong> ${w.m}</small>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  `,
+                                    )
+                                    .join("")}
+                              </div>
+                          </div>
+                      `;
           renderPlayer(container.querySelector(".audio-player-wrapper"), sec);
         }
         document
