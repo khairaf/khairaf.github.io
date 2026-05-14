@@ -1,0 +1,1481 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn and practice Salat Fajr recitations with transliteration, translation, and pronunciation guides. Includes an interactive quiz."
+    />
+    <meta
+      name="keywords"
+      content="Salat Fajr, prayer guide, Arabic recitation, Al-Fatihah, Takbiratul Ihram, Ruku, Sajdah, Islamic prayer, learn Arabic, Quran learning, Muslim"
+    />
+    <meta name="author" content="Your Name or Organization" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://khairaf.github.io/projects/kusu/"
+    />
+    <meta property="og:title" content="Salat Fajr Recitation Guide" />
+    <meta
+      property="og:description"
+      content="Learn and practice Salat Fajr recitations with transliteration, translation, and pronunciation guides. Includes an interactive quiz."
+    />
+    <meta
+      property="og:image"
+      content="https://khairaf.github.io/projects/kusu/social-share.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://khairaf.github.io/projects/kusu/"
+    />
+    <meta property="twitter:title" content="Salat Fajr Recitation Guide" />
+    <meta
+      property="twitter:description"
+      content="Learn and practice Salat Fajr recitations with transliteration, translation, and pronunciation guides. Includes an interactive quiz."
+    />
+    <meta
+      property="twitter:image"
+      content="https://khairaf.github.io/projects/kusu/social-share.jpg"
+    />
+
+    <title>Salat Fajr Recitation Guide</title>
+    <style>
+      :root {
+        --primary: #2c3e50;
+        --accent: #27ae60;
+        --bg: #f9f9fb;
+        --burgundy: #800020;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        background: var(--bg);
+        color: #333;
+      }
+      .dev-banner {
+        background-color: var(--burgundy);
+        color: white;
+        padding: 10px 45px;
+        text-align: center;
+        position: relative;
+        font-size: 0.85em;
+        z-index: 1000;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .banner-close {
+        position: absolute;
+        left: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em;
+        transition: background 0.2s;
+      }
+      .banner-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .banner-content {
+        flex: 1;
+      }
+      .card {
+        background: #fdfdfd;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+      h2 {
+        color: var(--primary);
+        margin-top: 0;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+      }
+      .arabic-text {
+        font-size: 2.5em;
+        direction: rtl;
+        margin: 15px 0;
+      }
+      .word-wrapper {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        margin: 0 5px;
+      }
+      .word-text {
+        font-size: 1.2em;
+        color: var(--primary);
+        transition: color 0.3s;
+      }
+      .word-wrapper:hover .word-text {
+        color: var(--accent);
+      }
+      .word-wrapper:hover span {
+        color: var(--accent);
+      }
+
+      .tooltip {
+        visibility: hidden;
+        width: 300px;
+        max-width: 90vw;
+        background: #1e293b;
+        color: white;
+        border-radius: 8px;
+        padding: 16px;
+        position: absolute;
+        z-index: 1100;
+        bottom: 130%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        border: 1px solid #334155;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        font-size: 0.9em;
+        pointer-events: none;
+        box-sizing: border-box;
+      }
+      .tooltip.active {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .tooltip.flip {
+        bottom: auto;
+        top: 130%;
+      }
+      .tooltip.flip::after {
+        top: auto;
+        bottom: 100%;
+        border-color: transparent transparent #1e293b transparent;
+      }
+      .tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -8px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: #1e293b transparent transparent transparent;
+      }
+      .tt-close {
+        background: none;
+        border: none;
+        color: #94a3b8;
+        cursor: pointer;
+        font-size: 1.2em;
+        padding: 0;
+        line-height: 1;
+      }
+      .tt-close:hover {
+        color: white;
+      }
+      .play-pronunciation {
+        background: none;
+        border: none;
+        color: #34d399;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50%;
+        transition: background 0.3s;
+      }
+      .play-pronunciation:hover {
+        background: #334155;
+      }
+      .tt-header {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #475569;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+        gap: 8px;
+      }
+      .tt-title {
+        font-size: 0.8em;
+        font-weight: 600;
+        color: #34d399;
+      }
+      .tt-label {
+        font-size: 0.44em;
+        color: #94a3b8;
+        margin: 0 0 2px 0;
+      }
+      .tt-val {
+        font-size: 0.8em;
+        margin: 0 0 10px 0;
+        font-weight: 500;
+        color: #6ee7b7;
+      }
+      .tt-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .tt-grid-item {
+        margin: 0;
+      }
+      .tt-val-sm {
+        font-size: 0.7em;
+        margin: 0;
+        color: #fff;
+      }
+      .tt-guide {
+        font-size: 0.4em;
+        margin: 0;
+        font-style: italic;
+        color: #cbd5e1;
+      }
+      .audio-player-wrapper {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 12px;
+        margin: 15px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .play-pause-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s;
+        background: linear-gradient(135deg, #27ae60, #2ecc71);
+      }
+      .play-pause-btn.playing {
+        background: linear-gradient(135deg, #c0392b, #e74c3c);
+      }
+      .seek-bar {
+        flex-grow: 1;
+        accent-color: #e74c3c;
+        cursor: pointer;
+        height: 6px;
+        order: 10;
+        width: 100%;
+      }
+      .time-display {
+        font-family: monospace;
+        font-size: 0.9em;
+        min-width: 80px;
+        text-align: right;
+        order: 2;
+      }
+      .volume-bar {
+        width: 80px;
+        accent-color: var(--primary);
+        cursor: pointer;
+        height: 6px;
+        order: 3;
+      }
+      .play-pause-btn {
+        order: 1;
+      }
+      @media (max-width: 480px) {
+        .controls {
+          gap: 10px;
+        }
+        .seek-bar {
+          order: 3;
+        }
+        .time-display {
+          order: 2;
+          min-width: auto;
+          flex: 1;
+        }
+        .volume-bar {
+          order: 1;
+        }
+        .play-pause-btn {
+          order: 0;
+        }
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+      .word-cell {
+        perspective: 1000px;
+        cursor: pointer;
+      }
+      .word-cell-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+        display: grid;
+      }
+      .word-cell.flipped .word-cell-inner {
+        transform: rotateY(180deg);
+      }
+      .word-cell-front,
+      .word-cell-back {
+        grid-area: 1 / 1;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        box-sizing: border-box;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        min-height: 120px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+      .word-cell-front {
+        background: #f0f4f8;
+        color: var(--primary);
+        font-size: 1.2em;
+        font-weight: 500;
+      }
+      .word-cell-back {
+        background: var(--primary);
+        color: white;
+        transform: rotateY(180deg);
+        font-size: 0.85em;
+      }
+      .word-cell-back small {
+        line-height: 1.4;
+      }
+      .nav-bar {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .nav-btn {
+        background: #eee;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .nav-btn.active {
+        background: var(--primary);
+        color: white;
+      }
+      @media (max-width: 480px) {
+        .nav-btn {
+          padding: 8px 15px;
+          font-size: 0.9em;
+        }
+      }
+      /* Quiz Styles */
+      .quiz-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .quiz-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .progress-container {
+        flex-grow: 1;
+        height: 10px;
+        background: #eee;
+        border-radius: 5px;
+        margin: 0 15px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%;
+        background: var(--accent);
+        width: 0%;
+        transition: width 0.3s;
+      }
+      .question-card {
+        text-align: center;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 25px;
+      }
+      .question-arabic {
+        font-size: 3em;
+        margin-bottom: 10px;
+      }
+      .question-trans {
+        color: #666;
+        font-style: italic;
+        font-size: 1.2em;
+      }
+      .options-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .option-btn {
+        padding: 15px;
+        font-size: 1.1em;
+        border: 2px solid #eee;
+        border-radius: 10px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+      }
+      .option-btn:hover:not(:disabled) {
+        border-color: var(--accent);
+        background: #f0fff4;
+      }
+      .option-btn.correct {
+        background: #27ae60;
+        color: white;
+        border-color: #27ae60;
+      }
+      .option-btn.incorrect {
+        background: #e74c3c;
+        color: white;
+        border-color: #e74c3c;
+      }
+      .option-btn:disabled {
+        cursor: default;
+      }
+      .feedback-area {
+        margin-top: 20px;
+        text-align: center;
+        min-height: 50px;
+        font-weight: bold;
+      }
+      .result-screen {
+        text-align: center;
+        padding: 40px;
+      }
+      .result-score {
+        font-size: 4em;
+        color: var(--accent);
+        font-weight: bold;
+        margin: 20px 0;
+      }
+      .retry-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .retry-btn:hover {
+        background: #34495e;
+      }
+      @media (max-width: 600px) {
+        .options-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* Tajwid Coloring */
+      .quran-text {
+        font-size: 2.5em; /* Adjust as needed */
+        direction: rtl;
+        margin: 15px 0;
+        line-height: 2; /* For better readability with colored spans */
+      }
+      .ham_wasl,
+      .slnt,
+      .end {
+        color: #aaa; /* Grey */
+      }
+      .laam_shamsiyah {
+        color: #6b4f2d; /* Brownish-grey */
+      }
+      .madda_normal {
+        color: #3a7bd5; /* Blue */
+      }
+      .madda_permissible {
+        color: #d17b49; /* Muted Terracotta */
+      }
+      .madda_necessary {
+        color: #00897b;
+      }
+      .ghunnah {
+        color: #ff7e1e; /* Orange */
+      }
+      .qalaqah {
+        color: #dd0008; /* Red */
+      }
+      .ikhafa {
+        color: #9400a8; /* Purple */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="dev-banner" class="dev-banner">
+      <button class="banner-close" onclick="closeBanner()" title="Close banner">
+        ×
+      </button>
+      <div class="banner-content">
+        <strong>Work in Progress:</strong> This project is under active
+        development. Some content may be inaccurate or incomplete.
+      </div>
+    </div>
+    <h1>Salat Fajr Recitation Guide</h1>
+    <div id="nav" class="nav-bar"></div>
+    <div id="sections"></div>
+
+    <script>
+      const sections = {
+        Takbir: {
+          title: "Takbiratul Ihram",
+          arabic: "اللَّهُ أَكْبَرُ",
+          fullTrans: "Allah is the Greatest. Allah Maha Besar.",
+          audio: "ruku.mp3",
+          words: [
+            { a: "اللَّهُ", t: "Allahu", m: "Allah", e: "God", p: "Throat" },
+            {
+              a: "أَكْبَرُ",
+              t: "Akbar",
+              m: "Maha Besar",
+              e: "Greater",
+              p: "Throat",
+            },
+          ],
+        },
+        Iftitah: {
+          title: "Dua Iftitah",
+          arabic: "اللَّهُ أَكْبَرُ",
+          fullTrans: "Allah is the Greatest. Allah Maha Besar.",
+          audio: "ruku.mp3",
+          words: [
+            {
+              a: "اللهُ أَكْبَرُ كَبِيرًا",
+              t: "Allāhu Akbaru Kabīran",
+              m: "Allah Maha Besar lagi Maha Agung",
+              e: "Allah is the Greatest, Most Magnificent",
+              p: "Lam from tongue tip, Ha from throat, Hamzah from throat, Kaf from tongue root, Ba from lips, Ra from tongue tip",
+            },
+            {
+              a: "وَالْحَمْدُ لِلَّهِ كَثِيْرًا",
+              t: "Wal-ḥamdu Lillāhi Kathīran",
+              m: "Segala puji bagi Allah dengan banyak",
+              e: "All praise is due to Allah in abundance",
+              p: "Waw from lips, Ha from throat, Dal from tongue tip, Lam from tongue tip, Tha from tongue tip, Ra from tongue tip",
+            },
+            {
+              a: "وَسُبْحَانَ اللهِ بُكْرَةً وَأَصِيْلًا",
+              t: "Wa-subḥāna Allāhi Bukratan Wa-aṣīlan",
+              m: "Maha Suci Allah pada waktu pagi dan petang",
+              e: "Glory be to Allah in the morning and evening",
+              p: "Sin from tongue tip, Ha from throat, Nun from tongue tip, Ba from lips, Kaf from tongue root, Ṣad from tongue, Ya from palate, Lam from tongue tip",
+            },
+            {
+              a: "وَجَّهْتُ وَجْهِيَ لِلَّذِيْ فَطَرَ السَّمَاوَاتِ وَالْأَرْضَ",
+              t: "Wajjahtu Wajhiya Lilladhī Faṭara As-samāwāti Wal-arḍ",
+              m: "Aku hadapkan wajahku kepada yang menciptakan langit dan bumi",
+              e: "I have turned my face to Him who created the heavens and the earth",
+              p: "Waw from lips, Jim from palate, Ha from throat, Lam from tongue tip, Dhal from tongue tip, Fa from lips, Ṭa from tongue root, Ra from tongue tip, Sin from tongue tip, Mim from lips, Alif from throat, Ḍad from tongue side",
+            },
+            {
+              a: "حَنِيْفًا مُسْلِمًا وَمَا أَنَا مِنَ الْمُشْرِكِيْنَ",
+              t: "Ḥanīfan Musliman Wa-mā Anā Mina Al-mushrikīn",
+              m: "Dengan ikhlas sebagai seorang Muslim, dan aku bukan dari golongan musyrik",
+              e: "Being upright as a Muslim, and I am not among the polytheists",
+              p: "Ha from throat, Nun from tongue tip, Mim from lips, Sin from tongue tip, Lam from tongue tip, Ra from tongue tip, Kaf from tongue root",
+            },
+            {
+              a: "إِنَّ صَلَاتِيْ وَنُسُكِيْ وَمَحْيَايَ وَمَمَاتِيْ لِلَّهِ رَبِّ الْعَالَمِيْنَ",
+              t: "Inna Ṣalātī Wa-nusukī Wa-maḥyāya Wa-mamātī Lillāhi Rabbil-ʿĀlamīn",
+              m: "Sesungguhnya solatku, ibadahku, hidupku dan matiku adalah untuk Allah, Tuhan sekalian alam",
+              e: "Indeed, my prayer, my sacrifice, my life and my death are for Allah, Lord of the worlds",
+              p: "Nun from tongue tip, Ṣad from tongue, Lam from tongue tip, Ta from tongue tip, Ya from palate, Mim from lips, Ha from throat, ʿAin from throat",
+            },
+            {
+              a: "لاَ شَرِيْكَ لَهُ وَبِذَلِكَ أُمِرْتُ وَأَنَا مِنَ الْمُسْلِمِيْنَ",
+              t: "Lā Sharīka Lahu Wa-bidhālika Umirtu Wa-anā Mina Al-muslimīn",
+              m: "Tiada sekutu bagi-Nya, dengan itu aku diperintah, dan aku termasuk orang-orang Islam",
+              e: "He has no partner, with that I have been commanded, and I am among the Muslims",
+              p: "Lam from tongue tip, Shin from tongue tip, Ra from tongue tip, Ya from palate, Kaf from tongue root, Ha from throat, Mim from lips, Sin from tongue tip",
+            },
+          ],
+        },
+        Fatihah: {
+          title: "Surah Al-Fatihah",
+          fullTrans: "All praise is due to Allah.",
+          audio: "pronounce.mp3",
+          words: [
+            {
+              a: "بِسْمِ",
+              t: "Bismi",
+              m: "Dengan nama",
+              e: "In the name",
+              p: "Ba from lips, Seen from teeth",
+            },
+            {
+              a: "<span class=\'ham_wasl\'>ٱ</span>للَّهِ",
+              a1: "ham_wasl",
+              t: "Allāh",
+              m: "Allah",
+              e: "Allah",
+              p: "Lam from tongue touching gums, Ha from throat",
+            },
+            {
+              a1: "ٱلرَّحْمَـٰنِ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّحْمَ<span class="madda_normal">ـٰ</span>نِ `,
+              t: "Ar-Raḥmān",
+              m: "Yang Maha Pemurah",
+              e: "The Most Gracious",
+              p: "Ra from tongue tip, Ha from throat",
+            },
+            {
+              // a: "ٱلرَّحِيمِ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّح<span class="madda_permissible">ِي</span>مِ `,
+              t: "Ar-Raḥīm",
+              m: "Yang Maha Penyayang",
+              e: "The Most Merciful",
+              p: "Ra from tongue tip, Ha from throat",
+            },
+            {
+              a: `<span class="end">١</span>`,
+            },
+            {
+              a: "ٱلْحَمْدُ",
+              t: "Al-Ḥamdu",
+              m: "Segala puji",
+              e: "All praise",
+              p: "Ha from throat, Dal from tongue tip",
+            },
+            {
+              a: "لِلَّهِ",
+              t: "Lillāh",
+              m: "bagi Allah",
+              e: "is due to Allah",
+              p: "Lam from tongue touching gums",
+            },
+            {
+              a: "رَبِّ",
+              t: "Rabb",
+              m: "Tuhan",
+              e: "Lord",
+              p: "Ra from tongue tip, Ba from lips",
+            },
+            {
+              // a: "ٱلْعَـٰلَمِين",
+              a: `<span class="ham_wasl">ٱ</span>لْعَ<span class="madda_normal">ـٰ</span>لَم<span class="madda_permissible">ِي</span>نَ `,
+              t: "Al-ʿĀlamīn",
+              m: "sekalian alam",
+              e: "of the worlds",
+              p: "ʿAin from throat, Lam from tongue",
+            },
+            {
+              a: `<span class="end">٢</span>`,
+            },
+            {
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّحْمَ<span class="madda_normal">ـٰ</span>نِ <span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>رَّح<span class="madda_permissible">ِي</span>مِ <span class="end">٣</span>`,
+              t: "Ar-Raḥmānir-Raḥīm",
+              m: "Yang Maha Pemurah, Yang Maha Penyayang",
+              e: "The Most Gracious, The Most Merciful",
+              p: "Ra from tongue tip, Ha from throat, Mim from lips, Nun from tongue tip, Ya from palate",
+            },
+            {
+              // a: "مَـٰلِكِ",
+              a: ` مَ<span class="madda_normal">ـٰ</span>لِكِ `,
+              t: "Māliki",
+              m: "Pemilik",
+              e: "Master",
+              p: "Mim from lips, Lam from tongue",
+            },
+            {
+              a: "يَوْمِ",
+              t: "Yawmi",
+              m: "Hari",
+              e: "of the Day",
+              p: "Ya from palate, Mim from lips",
+            },
+            {
+              // a: "ٱلدِّينِ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>دّ<span class="madda_permissible">ِي</span>نِ <span class="end">٤</span>`,
+              t: "Ad-Dīn",
+              m: "Agama",
+              e: "of Judgment",
+              p: "Dal from tongue tip, Nun from tongue tip",
+            },
+            {
+              a: "إِيَّاكَ",
+              t: "Iyyāka",
+              m: "Hanya kepada-Mu",
+              e: "You alone",
+              p: "Ya from palate, Kaf from tongue root",
+            },
+            {
+              a: "نَعْبُدُ",
+              t: "Naʿbudu",
+              m: "kami menyembah",
+              e: "we worship",
+              p: "Nun from tongue tip, ʿAin from throat",
+            },
+            {
+              a: "وَإِيَّاكَ",
+              t: "Wa-Iyyāka",
+              m: "dan hanya kepada-Mu",
+              e: "and You alone",
+              p: "Waw from lips, Ya from palate",
+            },
+            {
+              // a: "نَسْتَعِينُ",
+              a: ` نَسْتَع<span class="madda_permissible">ِي</span>نُ <span class="end">٥</span>`,
+              t: "Nastaʿīn",
+              m: "kami mohon pertolongan",
+              e: "we ask for help",
+              p: "Nun from tongue tip, ʿAin from throat",
+            },
+            {
+              a: "ٱهْدِنَا",
+              t: "Ihdinā",
+              m: "Tunjukilah kami",
+              e: "Guide us",
+              p: "Ha from throat, Dal from tongue tip",
+            },
+            {
+              // a: "ٱلصِّرَٰطَ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>صِّر<span class="madda_normal">َٲ</span>طَ `,
+              t: "Aṣ-Ṣirāṭa",
+              m: "jalan",
+              e: "the straight path",
+              p: "Ṣad from tongue, Ra from tongue tip",
+            },
+            {
+              // a: "ٱلْمُسْتَقِيمَ",
+              a: `<span class="ham_wasl">ٱ</span>لْمُسْتَق<span class="madda_permissible">ِي</span>مَ <span class="end">٦</span>`,
+              t: "Al-Mustaqīm",
+              m: "yang lurus",
+              e: "the straight",
+              p: "Mim from lips, Qaf from tongue root",
+            },
+            {
+              // a: "صِرَٰطَ",
+              a: `صِر<span class="madda_normal">َٲ</span>طَ `,
+              t: "Ṣirāṭa",
+              m: "jalan",
+              e: "the path",
+              p: "Ṣad from tongue, Ra from tongue tip",
+            },
+            {
+              // a: "ٱلَّذِينَ",
+              // a: "<span class=\'ham_wasl\'>ٱ</span>لدين",
+              a: `<span class="ham_wasl">ٱ</span>لَّذِينَ`,
+              t: "Alladhīna",
+              m: "orang-orang yang",
+              e: "of those who",
+              p: "Lam from tongue, Dhal from tongue tip",
+            },
+            {
+              a: "أَنْعَمْتَ",
+              t: "Anʿamta",
+              m: "Engkau beri nikmat",
+              e: "You bestowed favor",
+              p: "ʿAin from throat, Mim from lips",
+            },
+            {
+              a: "عَلَيْهِمْ",
+              t: "ʿAlayhim",
+              m: "ke atas mereka",
+              e: "upon them",
+              p: "ʿAin from throat, Ha from throat",
+            },
+            {
+              a: "غَيْرِ",
+              t: "Ghayri",
+              m: "bukan",
+              e: "not",
+              p: "Ghayn from throat, Ra from tongue tip",
+            },
+            {
+              // a: "ٱلْمَغْضُوبِ",
+              a: `<span class="ham_wasl">ٱ</span>لْمَغْضُوبِ`,
+              t: "Al-Maghḍūbi",
+              m: "yang dimurkai",
+              e: "those who earned anger",
+              p: "Mim from lips, Ghayn from throat",
+            },
+            {
+              a: `عَلَيْهِمْ  `,
+              t: "ʿAlayhim",
+              m: "ke atas mereka",
+              e: "upon them",
+              p: "ʿAin from throat, Lam from tongue tip, Ha from throat, Mim from lips",
+            },
+            {
+              a: "وَلَا",
+              t: "Walā",
+              m: "dan bukan",
+              e: "nor",
+              p: "Waw from lips, Lam from tongue",
+            },
+            {
+              // a: "ٱلضَّآلِّينَ",
+              a: `<span class="ham_wasl">ٱ</span><span class="laam_shamsiyah">ل</span>ضّ<span class="madda_necessary">َا</span>ٓلّ<span class="madda_permissible">ِي</span>نَ <span class="end">٧</span>`,
+              t: "Aḍ-Ḍāllīn",
+              m: "yang sesat",
+              e: "those who go astray",
+              p: "Ḍad from tongue side, Lam from tongue",
+            },
+          ],
+        },
+        Ruku: {
+          title: "Ruku' (Bowing)",
+          arabic: "سُبْحَانَ رَبِّيَ الْعَظِيمِ وَبِحَمْدِهِ",
+          fullTrans: "Glory be to my Lord the Supreme, and by His praise.",
+          audio: "ruku.mp3",
+          words: [
+            {
+              a: "سُبْحَانَ",
+              t: "Subhana",
+              m: "Maha Suci",
+              e: "Glory be",
+              p: "S",
+            },
+            { a: "رَبِّيَ", t: "Rabbiya", m: "Tuhanku", e: "my Lord", p: "R" },
+            {
+              a: "الْعَظِيمِ",
+              t: "Al-Azim",
+              m: "Maha Agung",
+              e: "the Supreme",
+              p: "A",
+            },
+            {
+              a: "وَبِحَمْدِهِ",
+              t: "Wa-biḥamdihi",
+              m: "dan dengan pujian-Nya",
+              e: "and with His praise",
+              p: "Waw from lips, Ha from throat, Mim from lips, Dal from tongue tip, Ha from throat",
+            },
+          ],
+        },
+        Itidal: {
+          title: "I’tidal",
+          arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ",
+          fullTrans:
+            "Allah hears those who praise Him. O Our Lord, to You are all the praises",
+          audio: "ruku.mp3",
+          words: [
+            {
+              a: "سَمِعَ  ٱللّٰهُ لِمَنْ حَمِدَهُ <br>",
+              t: "Samiʿa Allāhu liman ḥamidahu",
+              m: "Allah mendengar orang yang memuji-Nya",
+              e: "Allah hears the one who praises Him",
+              p: "Sin from tongue tip, Mim from lips, ʿAin from throat, Lam from tongue tip, Ha from throat, Nun from tongue tip, Dal from tongue tip",
+            },
+            {
+              a: "رَبَّنَا وَلَكَ الْحَمْدُ",
+              t: "Rabbana wa-laka al-ḥamdu",
+              m: "Ya Tuhan kami, bagi-Mu segala puji",
+              e: "Our Lord, to You belongs all praise",
+              p: "Ra from tongue tip, Ba from lips, Nun from tongue tip, Lam from tongue tip, Kaf from tongue root, Ha from throat, Dal from tongue tip",
+            },
+          ],
+        },
+        Sajdah: {
+          title: "Sajdah (Prostration)",
+          arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ",
+          fullTrans: "Glory be to my Lord the Most High, and by His praise.",
+          audio: "ruku.mp3",
+          words: [
+            {
+              a: "سُبْحَانَ",
+              t: "Subḥāna",
+              m: "Maha Suci",
+              e: "Glory be",
+              p: "Sin from tongue tip, Ba from lips, Ha from throat, Nun from tongue tip",
+            },
+            {
+              a: "رَبِّيَ",
+              t: "Rabbīya",
+              m: "Tuhanku",
+              e: "My Lord",
+              p: "Ra from tongue tip, Ba from lips, Ya from palate",
+            },
+            {
+              a: "الأَعْلَى",
+              t: "Al-aʿlā",
+              m: "Yang Maha Tinggi",
+              e: "The Most High",
+              p: "Hamzah from throat, ʿAin from throat, Lam from tongue tip",
+            },
+            {
+              a: "وَبِحَمدِهِ",
+              t: "Wa-biḥamdihi",
+              m: "dan dengan pujian-Nya",
+              e: "and with His praise",
+              p: "Waw from lips, Ha from throat, Mim from lips, Dal from tongue tip, Ha from throat",
+            },
+          ],
+        },
+        Julus: {
+          title: "Sit in between two sujud (Julus)",
+          arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ",
+          fullTrans:
+            "O my Lord, forgive me; have mercy on me, strengthen me, raise my rank, sustain me, guide me, grant me wellbeing and pardon me.",
+          audio: "ruku.mp3",
+          words: [
+            {
+              a: "رَبِّ",
+              t: "Rabbi",
+              m: "Tuhanku",
+              e: "My Lord",
+              p: "Ra from tongue tip, Ba from lips",
+            },
+            {
+              a: "اغْفِرْ",
+              t: "Ighfir",
+              m: "Ampunilah",
+              e: "Forgive",
+              p: "Ghayn from throat, Fa from lips, Ra from tongue tip",
+            },
+            {
+              a: "لِي",
+              t: "Lī",
+              m: "aku",
+              e: "me",
+              p: "Lam from tongue tip, Ya from palate",
+            },
+            {
+              a: "وَارْحَمْنِي",
+              t: "Wa-arḥamnī",
+              m: "dan rahmatilah aku",
+              e: "and have mercy on me",
+              p: "Waw from lips, Ra from tongue tip, Ha from throat, Mim from lips, Nun from tongue tip, Ya from palate",
+            },
+            {
+              a: "وَاجْبُرْنِي",
+              t: "Wa-ajburnī",
+              m: "dan perbaikilah aku",
+              e: "and mend me",
+              p: "Waw from lips, Jim from palate, Ba from lips, Ra from tongue tip, Nun from tongue tip, Ya from palate",
+            },
+            {
+              a: "وَارْفَعْنِي",
+              t: "Wa-arfaʿnī",
+              m: "dan angkatlah aku",
+              e: "and raise me",
+              p: "Waw from lips, Ra from tongue tip, Fa from lips, ʿAin from throat, Nun from tongue tip, Ya from palate",
+            },
+            {
+              a: "وَارْزُقْنِي",
+              t: "Wa-arzuqnī",
+              m: "dan rezekikanlah aku",
+              e: "and provide for me",
+              p: "Waw from lips, Ra from tongue tip, Zay from tongue tip, Qaf from tongue root, Nun from tongue tip, Ya from palate",
+            },
+            {
+              a: "وَاهْدِنِي",
+              t: "Wa-hdinī",
+              m: "dan tunjukilah aku",
+              e: "and guide me",
+              p: "Waw from lips, Ha from throat, Dal from tongue tip, Nun from tongue tip, Ya from palate",
+            },
+            {
+              a: "وَعَافِنِي",
+              t: "Wa-ʿāfinī",
+              m: "dan sihatkanlah aku",
+              e: "and grant me health",
+              p: "Waw from lips, ʿAin from throat, Fa from lips, Nun from tongue tip, Ya from palate",
+            },
+            {
+              a: "وَاعْفُ",
+              t: "Wa-ʿfu",
+              m: "dan maafkanlah",
+              e: "and pardon",
+              p: "Waw from lips, ʿAin from throat, Fa from lips",
+            },
+            {
+              a: "عَنِّي",
+              t: "ʿannī",
+              m: "aku",
+              e: "me",
+              p: "ʿAin from throat, Nun from tongue tip, Ya from palate",
+            },
+          ],
+        },
+        Tasyahhud: {
+          title: "Tasyahhud Awwal & Tahiyyat Akhir",
+          fullTrans:
+            "Blessed salutations, prayers, good deeds to Allah. Peace be upon you, O Prophet, as well as Allah’s mercy and His blessings. Peace be upon us and upon the righteous servants of God. I bear witness that there is no deity but God, and I bear witness that Muhammad is His servant and His messenger. O Allah send your selawat upon Muhammad and upon the family of Muhammad, as you let it come upon Ibrahim and the family of Ibrahim. O Allah, bless Muhammad and the family of Muhammad, As You blessed Ibrahim and the family of Ibrahim. For verily, You are Praiseworthy and Glorious.",
+          audio: "ruku.mp3",
+          words: [
+            {
+              a: "اَلتَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ لِلهِ",
+              t: "At-taḥiyyātu al-mubārakātu aṣ-ṣalawātu aṭ-ṭayyibātu lillāh",
+              m: "Segala penghormatan, keberkatan, solat dan kebaikan adalah bagi Allah",
+              e: "All greetings, blessings, prayers and good things are for Allah",
+              p: "Ta from tongue tip, Ha from throat, Ya from palate, Lam from tongue tip, Ba from lips, Ra from tongue tip, Qaf from tongue root, Ṣad from tongue tip, Waw from lips, Ṭa from tongue root",
+            },
+            {
+              a: "اَلسَّلاَمُ عَلَيكَ أَيُّهَا النَّبِيَّ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ",
+              t: "As-salāmu ʿalayka ayyuhā an-nabiyyu wa-raḥmatullāhi wa-barakātuhu",
+              m: "Salam sejahtera ke atasmu wahai Nabi serta rahmat Allah dan keberkatan-Nya",
+              e: "Peace be upon you, O Prophet, and the mercy of Allah and His blessings",
+              p: "Sin from tongue tip, Lam from tongue tip, Mim from lips, ʿAin from throat, Ya from palate, Nun from tongue tip, Ba from lips, Ha from throat, Ra from tongue tip, Kaf from tongue root",
+            },
+            {
+              a: "السَّلاَمُ عَلَينَا وَعَلَى عِبَاِد اللهِ الصَّالِحِينَ",
+              t: "As-salāmu ʿalaynā wa-ʿalā ʿibādillāhi aṣ-ṣāliḥīn",
+              m: "Salam sejahtera ke atas kami dan ke atas hamba-hamba Allah yang soleh",
+              e: "Peace be upon us and upon the righteous servants of Allah",
+              p: "Sin from tongue tip, Lam from tongue tip, Mim from lips, ʿAin from throat, Ba from lips, Dal from tongue tip, Ṣad from tongue tip, Lam from tongue tip, Ha from throat, Nun from tongue tip",
+            },
+            {
+              a: "أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللهُ وَ أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللهِ",
+              t: "Ash-hadu an lā ilāha illā Allāh wa-ash-hadu anna Muḥammadan rasūlullāh",
+              m: "Aku bersaksi tiada Tuhan melainkan Allah dan aku bersaksi bahawa Muhammad itu pesuruh Allah",
+              e: "I bear witness that there is no god but Allah and I bear witness that Muhammad is the Messenger of Allah",
+              p: "Shin from tongue tip, Ha from throat, Dal from tongue tip, Lam from tongue tip, Hamzah from throat, Nun from tongue tip, Mim from lips, Ha from throat, Dal from tongue tip, Ra from tongue tip, Sin from tongue tip",
+            },
+            {
+              a: "اَللَّهُمَّ صَلِّ عَلَى سَيِدِنَا مُحَمَّدٍ وَعَلَى  آلِ سَيِدِنَا مُحَمَّدٍ",
+              t: "Allāhumma ṣalli ʿalā sayyidinā Muḥammadin wa-ʿalā āli sayyidinā Muḥammadin",
+              m: "Ya Allah, selawatlah ke atas penghulu kami Muhammad dan ke atas keluarga penghulu kami Muhammad",
+              e: "O Allah, send blessings upon our master Muhammad and upon the family of our master Muhammad",
+              p: "Lam from tongue tip, Ha from throat, Mim from lips, Ṣad from tongue tip, Lam from tongue tip, Ya from palate, Dal from tongue tip, Nun from tongue tip, Ha from throat, Ra from tongue tip",
+            },
+            {
+              a: "كَمَا صَلَيتَ عَلَى سَيِّدِنَا إِبْرَاهِيمَ",
+              t: "Kamā ṣallayta ʿalā sayyidinā Ibrāhīm",
+              m: "Sebagaimana Engkau telah berselawat ke atas penghulu kami Ibrahim",
+              e: "As You have sent blessings upon our master Ibrahim",
+              p: "Kaf from tongue root, Mim from lips, Ṣad from tongue tip, Lam from tongue tip, Ya from palate, Ta from tongue tip, ʿAin from throat, Ra from tongue tip, Ha from throat",
+            },
+            {
+              a: "وَعَلَى آلِ سَيِّدِنَا إِبْرَاهِيمَ",
+              t: "Wa-ʿalā āli sayyidinā Ibrāhīm",
+              m: "Dan ke atas keluarga penghulu kami Ibrahim",
+              e: "And upon the family of our master Ibrahim",
+              p: "Waw from lips, ʿAin from throat, Lam from tongue tip, Alif from throat, Sin from tongue tip, Ya from palate, Dal from tongue tip, Nun from tongue tip, Ha from throat",
+            },
+            {
+              a: "وَبَارِكَ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ سَيِّدِنَا مُحَمَّدٍ",
+              t: "Wa-bārik ʿalā sayyidinā Muḥammadin wa-ʿalā āli sayyidinā Muḥammadin",
+              m: "Dan berkatilah penghulu kami Muhammad serta keluarga penghulu kami Muhammad",
+              e: "And bless our master Muhammad and the family of our master Muhammad",
+              p: "Waw from lips, Ba from lips, Ra from tongue tip, Kaf from tongue root, ʿAin from throat, Lam from tongue tip, Mim from lips, Ha from throat, Dal from tongue tip, Nun from tongue tip",
+            },
+            {
+              a: "كَمَا بَارَكْتَ عَلَى سَيِّدِنَا إِبْرَاهِيمَ",
+              t: "Kamā bārakta ʿalā sayyidinā Ibrāhīm",
+              m: "Sebagaimana Engkau telah memberkati penghulu kami Ibrahim",
+              e: "As You have blessed our master Ibrahim",
+              p: "Kaf from tongue root, Mim from lips, Ba from lips, Ra from tongue tip, Kaf from tongue root, Ta from tongue tip, ʿAin from throat, Lam from tongue tip",
+            },
+            {
+              a: "وَعَلَى آلِ سَيِّدِنَا إِبْرَاهِيمَ",
+              t: "Wa-ʿalā āli sayyidinā Ibrāhīm",
+              m: "Dan ke atas keluarga penghulu kami Ibrahim",
+              e: "And upon the family of our master Ibrahim",
+              p: "Waw from lips, ʿAin from throat, Lam from tongue tip, Alif from throat, Sin from tongue tip, Ya from palate, Dal from tongue tip, Nun from tongue tip, Ha from throat",
+            },
+            {
+              a: "فِي العَالَمِينَ إِنَّكَ حَمِيدٌ مَجِيدٌ",
+              t: "Fī al-ʿālamīna innaka ḥamīdun majīdun",
+              m: "Di dalam seluruh alam, sesungguhnya Engkau Maha Terpuji lagi Maha Mulia",
+              e: "In all the worlds, indeed You are Praiseworthy, Glorious",
+              p: "Fa from lips, Ya from palate, ʿAin from throat, Lam from tongue tip, Nun from tongue tip, Ha from throat, Mim from lips, Dal from tongue tip, Jim from palate",
+            },
+          ],
+        },
+        Salam: {
+          title: "Salam",
+          fullTrans: "Peace and blessings upon you",
+          audio: "ruku.mp3",
+          words: [
+            {
+              a: "السَّلَامُ",
+              t: "As-salāmu",
+              m: "Salam sejahtera",
+              e: "Peace",
+              p: "Sin from tongue tip, Lam from tongue tip, Mim from lips",
+            },
+            {
+              a: "عَلَيْكُمْ",
+              t: "ʿalaykum",
+              m: "ke atas kamu",
+              e: "upon you",
+              p: "ʿAin from throat, Lam from tongue tip, Ya from palate, Kaf from tongue root, Mim from lips",
+            },
+            {
+              a: "وَرَحمَةُ",
+              t: "Wa-raḥmatu",
+              m: "dan rahmat",
+              e: "and mercy",
+              p: "Waw from lips, Ra from tongue tip, Ha from throat, Mim from lips, Ta from tongue tip",
+            },
+            {
+              a: "ٱللّٰهِ",
+              t: "Allāhi",
+              m: "Allah",
+              e: "Allah",
+              p: "Lam from tongue tip, Ha from throat",
+            },
+          ],
+        },
+      };
+
+      let quizState = {
+        questions: [],
+        currentIndex: 0,
+        score: 0,
+        canAnswer: true,
+      };
+
+      function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return `${m}:${sec.toString().padStart(2, "0")}`;
+      }
+
+      // Keep a reference outside the function
+      let currentAudio = null;
+
+      function renderPlayer(wrapper, sec) {
+        // Cleanup previous audio instance to prevent memory leaks
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.onended = null;
+          currentAudio.ontimeupdate = null;
+          currentAudio.src = ""; // release
+          currentAudio = null;
+        }
+
+        const audio = new Audio(sec.audio);
+        currentAudio = audio;
+        const duration = sec.words.length * 2.5;
+        wrapper.innerHTML = `
+                            <div class="controls">
+                                <button class="play-pause-btn">▶</button>
+                                <input type="range" class="seek-bar" value="0" min="0" max="${duration}" step="0.1">
+                                <span class="time-display">0:00 / ${formatTime(duration)}</span>
+                                <input type="range" class="volume-bar" min="0" max="1" step="0.01" value="1">
+                            </div>
+                            <div class="status"><div class="pulsing"></div> <span>Ready</span></div>
+                        `;
+        const btn = wrapper.querySelector(".play-pause-btn");
+        const seek = wrapper.querySelector(".seek-bar");
+        const timeDisp = wrapper.querySelector(".time-display");
+        const pulse = wrapper.querySelector(".pulsing");
+        const statusText = wrapper.querySelector(".status span");
+        const volumeBar = wrapper.querySelector(".volume-bar");
+
+        audio.volume = volumeBar.value; // Set initial volume
+
+        audio.onended = () => {
+          btn.classList.remove("playing");
+          btn.innerText = "▶";
+          pulse.style.display = "none";
+          statusText.innerText = "Ready";
+          seek.value = 0;
+        };
+        audio.ontimeupdate = () => {
+          seek.value = audio.currentTime;
+          timeDisp.innerText = `${formatTime(audio.currentTime)} / ${formatTime(duration)}`;
+        };
+        seek.oninput = (e) => (audio.currentTime = e.target.value);
+        volumeBar.oninput = (e) => (audio.volume = e.target.value); // Volume control
+        btn.onclick = () => {
+          if (audio.paused) {
+            audio.play();
+            btn.classList.add("playing");
+            btn.innerText = "II";
+            pulse.style.display = "block";
+            statusText.innerText = "Now Playing";
+          } else {
+            audio.pause();
+            btn.classList.remove("playing");
+            btn.innerText = "▶";
+            pulse.style.display = "none";
+            statusText.innerText = "Paused";
+          }
+        };
+      }
+
+      // Keep a reference outside the function
+      let wordAudio = null;
+
+      function playWordAudio() {
+        // If an audio instance already exists, stop and release it
+        if (wordAudio) {
+          wordAudio.pause();
+          wordAudio.src = ""; // release the resource
+          wordAudio = null;
+        }
+        // Create a new audio instance
+        wordAudio = new Audio("pronounce.mp3");
+        wordAudio.play();
+      }
+
+      function initQuiz() {
+        const allWords = [];
+        Object.values(sections).forEach((sec) => {
+          sec.words.forEach((w) => {
+            allWords.push({ ...w, sectionTitle: sec.title });
+          });
+        });
+
+        // Shuffle and pick 10
+        const shuffled = allWords.sort(() => 0.5 - Math.random());
+        quizState.questions = shuffled.slice(0, 10).map((word) => {
+          const options = [word.m];
+          const distractors = allWords
+            .filter((w) => w.m !== word.m)
+            .map((w) => w.m);
+          const uniqueDistractors = [...new Set(distractors)];
+
+          while (options.length < 4 && uniqueDistractors.length > 0) {
+            const idx = Math.floor(Math.random() * uniqueDistractors.length);
+            options.push(uniqueDistractors.splice(idx, 1)[0]);
+          }
+
+          return {
+            ...word,
+            options: options.sort(() => 0.5 - Math.random()),
+          };
+        });
+
+        quizState.currentIndex = 0;
+        quizState.score = 0;
+        quizState.canAnswer = true;
+        renderQuiz();
+      }
+
+      function renderQuiz() {
+        const container = document.getElementById("sections");
+        const q = quizState.questions[quizState.currentIndex];
+        const progress =
+          ((quizState.currentIndex + 1) / quizState.questions.length) * 100;
+
+        container.innerHTML = `
+                            <div class="quiz-container">
+                              <div class="quiz-header">
+                                <span>Question ${quizState.currentIndex + 1} of ${quizState.questions.length}</span>
+                                <div class="progress-container">
+                                  <div class="progress-bar" style="width: ${progress}%"></div>
+                                </div>
+                                <span>Score: ${quizState.score}</span>
+                              </div>
+                              <div class="question-card">
+                                <div class="question-arabic">${q.a}</div>
+                                <div class="question-trans">${q.t}</div>
+                                <p>What is the meaning of this word?</p>
+                              </div>
+                              <div class="options-grid">
+                                ${q.options
+                                  .map(
+                                    (opt, i) => `
+                                  <button class="option-btn" onclick="checkAnswer(${i})">${opt}</button>
+                                `,
+                                  )
+                                  .join("")}
+                              </div>
+                              <div class="feedback-area" id="feedback"></div>
+                            </div>
+                          `;
+      }
+
+      function checkAnswer(idx) {
+        if (!quizState.canAnswer) return;
+        quizState.canAnswer = false;
+
+        const q = quizState.questions[quizState.currentIndex];
+        const selected = q.options[idx];
+        const buttons = document.querySelectorAll(".option-btn");
+        const feedback = document.getElementById("feedback");
+
+        if (selected === q.m) {
+          quizState.score++;
+          buttons[idx].classList.add("correct");
+          feedback.innerHTML = `<span style="color: var(--accent)">✨ Correct! ${q.a} means ${q.m}.</span>`;
+        } else {
+          buttons[idx].classList.add("incorrect");
+          // Find correct one
+          buttons.forEach((btn, i) => {
+            if (q.options[i] === q.m) btn.classList.add("correct");
+          });
+          feedback.innerHTML = `<span style="color: #e74c3c">❌ Incorrect. ${q.a} means ${q.m}.</span>`;
+        }
+
+        setTimeout(() => {
+          quizState.currentIndex++;
+          if (quizState.currentIndex < quizState.questions.length) {
+            quizState.canAnswer = true;
+            renderQuiz();
+          } else {
+            showResults();
+          }
+        }, 2000);
+      }
+
+      function showResults() {
+        const container = document.getElementById("sections");
+        const percentage = Math.round(
+          (quizState.score / quizState.questions.length) * 100,
+        );
+        let message = "Excellent! You have a great grasp of the meanings.";
+        if (percentage < 80) message = "Good job! Keep practicing to improve.";
+        if (percentage < 50) message = "Keep learning! Consistency is key.";
+
+        container.innerHTML = `
+                            <div class="card result-screen">
+                              <h2>Quiz Completed!</h2>
+                              <div class="result-score">${percentage}%</div>
+                              <p>You scored ${quizState.score} out of ${quizState.questions.length}</p>
+                              <p>${message}</p>
+                              <button class="retry-btn" onclick="initQuiz()">Try Again</button>
+                            </div>
+                          `;
+      }
+
+      function render(key) {
+        const container = document.getElementById("sections");
+        if (key === "quiz") {
+          initQuiz();
+        } else {
+          const sec = sections[key];
+          container.innerHTML = `
+                                      <div class="card">
+                                          <h2>${sec.title}</h2>
+                                          <div class="arabic-text">
+                      ${sec.words
+                        .map(
+                          (
+                            w,
+                          ) => `<span class="word-wrapper" onclick="toggleTooltip(event)">
+                                  <span class="word-text">${w.a}</span>
+                                  <div class="tooltip">
+                                      <div class="tt-header">
+                                          <button class="tt-close" onclick="closeTooltip(event)">×</button>
+                                          <span class="tt-title" style="margin-left: 10px; flex: 1;">Pronunciation</span>
+                                          <button class="play-pronunciation" onclick="playWordAudio()">
+                                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                                          </button>
+                                      </div>
+                                      <p class="tt-label">Transliteration:</p>
+                                      <p class="tt-val">${w.t}</p>
+                                      <div class="tt-grid">
+                                          <div class="tt-grid-item"><p class="tt-label">🇬🇧 English:</p><p class="tt-val-sm">${w.e}</p></div>
+                                          <div class="tt-grid-item"><p class="tt-label">🇲🇾 Melayu:</p><p class="tt-val-sm">${w.m}</p></div>
+                                      </div>
+                                      <p class="tt-label">Makhraj Guide:</p>
+                                      <p class="tt-guide">${w.p}</p>
+                                  </div>
+                              </span>`,
+                        )
+                        .join(" ")}
+                  </div>
+                                          <div class="audio-player-wrapper"></div>
+                                          <p><strong>Translation:</strong> ${sec.fullTrans}</p>
+                                          <p style="text-align: center; font-size: 0.85em; color: #7f8c8d; margin: 20px 0 0 0;">
+                                              💡 Tip: Click the cards below to flip and see meanings!
+                                          </p>
+                                          <div class="grid">
+                                              ${sec.words
+                                                .map(
+                                                  (w) => `
+                                                  <div class="word-cell" onclick="this.classList.toggle('flipped')">
+                                                      <div class="word-cell-inner">
+                                                          <div class="word-cell-front">
+                                                              <span>${w.a}</span>
+                                                          </div>
+                                                          <div class="word-cell-back">
+                                                              <small><strong>EN:</strong> ${w.e}<br><strong>MY:</strong> ${w.m}</small>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              `,
+                                                )
+                                                .join("")}
+                                          </div>
+                                      </div>
+                                  `;
+          renderPlayer(container.querySelector(".audio-player-wrapper"), sec);
+        }
+        document
+          .querySelectorAll(".nav-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        document.getElementById("btn-" + key).classList.add("active");
+      }
+
+      function toggleTooltip(e) {
+        document
+          .querySelectorAll(".tooltip")
+          .forEach((t) => t.classList.remove("active", "flip"));
+        const tooltip = e.currentTarget.querySelector(".tooltip");
+        tooltip.classList.add("active");
+
+        const rect = tooltip.getBoundingClientRect();
+        if (rect.top < 0) {
+          tooltip.classList.add("flip");
+        }
+        e.stopPropagation();
+      }
+
+      function closeTooltip(e) {
+        e.currentTarget.closest(".tooltip").classList.remove("active");
+        e.stopPropagation();
+      }
+
+      const nav = document.getElementById("nav");
+      Object.keys(sections).forEach((key) => {
+        const btn = document.createElement("button");
+        btn.className = "nav-btn";
+        btn.id = "btn-" + key;
+        btn.innerText = key;
+        btn.onclick = () => render(key);
+        nav.appendChild(btn);
+      });
+      const qBtn = document.createElement("button");
+      qBtn.className = "nav-btn";
+      qBtn.id = "btn-quiz";
+      qBtn.innerText = "Quiz Mode";
+      qBtn.onclick = () => render("quiz");
+      nav.appendChild(qBtn);
+
+      function closeBanner() {
+        document.getElementById("dev-banner").style.display = "none";
+      }
+
+      render("Takbir");
+    </script>
+  </body>
+</html>
