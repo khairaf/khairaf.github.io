@@ -260,6 +260,7 @@
         display: flex;
         align-items: center;
         gap: 15px;
+        flex-wrap: wrap;
       }
       .play-pause-btn {
         width: 50px;
@@ -275,52 +276,49 @@
       .play-pause-btn.playing {
         background: linear-gradient(135deg, #c0392b, #e74c3c);
       }
-      .status {
-        font-size: 0.85em;
-        color: #7f8c8d;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .pulsing {
-        width: 8px;
-        height: 8px;
-        background: #e74c3c;
-        border-radius: 50%;
-        display: none;
-        animation: pulse 1.5s infinite;
-      }
-      @keyframes pulse {
-        0% {
-          transform: scale(0.95);
-          box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
-        }
-        70% {
-          transform: scale(1);
-          box-shadow: 0 0 0 6px rgba(231, 76, 60, 0);
-        }
-        100% {
-          transform: scale(0.95);
-          box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
-        }
-      }
       .seek-bar {
         flex-grow: 1;
         accent-color: #e74c3c;
         cursor: pointer;
         height: 6px;
-      }
-      .volume-bar {
-        width: 80px;
-        accent-color: var(--primary);
-        cursor: pointer;
-        height: 6px;
+        order: 10;
+        width: 100%;
       }
       .time-display {
         font-family: monospace;
         font-size: 0.9em;
         min-width: 80px;
         text-align: right;
+        order: 2;
+      }
+      .volume-bar {
+        width: 80px;
+        accent-color: var(--primary);
+        cursor: pointer;
+        height: 6px;
+        order: 3;
+      }
+      .play-pause-btn {
+        order: 1;
+      }
+      @media (max-width: 480px) {
+        .controls {
+          gap: 10px;
+        }
+        .seek-bar {
+          order: 3;
+        }
+        .time-display {
+          order: 2;
+          min-width: auto;
+          flex: 1;
+        }
+        .volume-bar {
+          order: 1;
+        }
+        .play-pause-btn {
+          order: 0;
+        }
       }
       .grid {
         display: grid;
@@ -383,6 +381,7 @@
         gap: 10px;
         margin-bottom: 30px;
         justify-content: center;
+        flex-wrap: wrap;
       }
       .nav-btn {
         background: #eee;
@@ -395,6 +394,12 @@
       .nav-btn.active {
         background: var(--primary);
         color: white;
+      }
+      @media (max-width: 480px) {
+        .nav-btn {
+          padding: 8px 15px;
+          font-size: 0.9em;
+        }
       }
       /* Quiz Styles */
       .quiz-container {
