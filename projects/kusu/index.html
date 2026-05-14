@@ -203,6 +203,17 @@
       .play-pronunciation:hover {
         background: #334155;
       }
+      .play:disabled {
+        background: linear-gradient(
+          135deg,
+          #95a5a6,
+          #bdc3c7
+        ); /* muted gray gradient */
+        color: #eee; /* lighter text */
+        cursor: not-allowed; /* show disabled cursor */
+        opacity: 0.7; /* slightly faded */
+        box-shadow: none;
+      }
       .tt-header {
         display: flex;
         align-items: center;
@@ -318,6 +329,17 @@
         }
         .play-pause-btn {
           order: 0;
+        }
+        .play:disabled {
+          background: linear-gradient(
+            135deg,
+            #95a5a6,
+            #bdc3c7
+          ); /* muted gray gradient */
+          color: #eee; /* lighter text */
+          cursor: not-allowed; /* show disabled cursor */
+          opacity: 0.7; /* slightly faded */
+          box-shadow: none;
         }
       }
       .grid {
@@ -564,7 +586,7 @@
           title: "Takbiratul Ihram",
           arabic: "اللَّهُ أَكْبَرُ",
           fullTrans: "Allah is the Greatest. Allah Maha Besar.",
-          audio: "ruku.mp3",
+          audio: "",
           words: [
             { a: "اللَّهُ", t: "Allahu", m: "Allah", e: "God", p: "Throat" },
             {
@@ -580,7 +602,7 @@
           title: "Dua Iftitah",
           arabic: "اللَّهُ أَكْبَرُ",
           fullTrans: "Allah is the Greatest. Allah Maha Besar.",
-          audio: "ruku.mp3",
+          audio: "",
           words: [
             {
               a: "اللهُ أَكْبَرُ كَبِيرًا",
@@ -636,7 +658,7 @@
         Fatihah: {
           title: "Surah Al-Fatihah",
           fullTrans: "All praise is due to Allah.",
-          audio: "pronounce.mp3",
+          audio: "",
           words: [
             {
               a: "بِسْمِ",
@@ -860,7 +882,7 @@
           title: "Ruku' (Bowing)",
           arabic: "سُبْحَانَ رَبِّيَ الْعَظِيمِ وَبِحَمْدِهِ",
           fullTrans: "Glory be to my Lord the Supreme, and by His praise.",
-          audio: "ruku.mp3",
+          audio: "",
           words: [
             {
               a: "سُبْحَانَ",
@@ -891,7 +913,7 @@
           arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ",
           fullTrans:
             "Allah hears those who praise Him. O Our Lord, to You are all the praises",
-          audio: "ruku.mp3",
+          audio: "",
           words: [
             {
               a: "سَمِعَ  ٱللّٰهُ لِمَنْ حَمِدَهُ <br>",
@@ -913,7 +935,7 @@
           title: "Sajdah (Prostration)",
           arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ",
           fullTrans: "Glory be to my Lord the Most High, and by His praise.",
-          audio: "ruku.mp3",
+          audio: "",
           words: [
             {
               a: "سُبْحَانَ",
@@ -950,7 +972,7 @@
           arabic: "سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ",
           fullTrans:
             "O my Lord, forgive me; have mercy on me, strengthen me, raise my rank, sustain me, guide me, grant me wellbeing and pardon me.",
-          audio: "ruku.mp3",
+          audio: "",
           words: [
             {
               a: "رَبِّ",
@@ -1035,7 +1057,7 @@
           title: "Tasyahhud Awwal & Tahiyyat Akhir",
           fullTrans:
             "Blessed salutations, prayers, good deeds to Allah. Peace be upon you, O Prophet, as well as Allah’s mercy and His blessings. Peace be upon us and upon the righteous servants of God. I bear witness that there is no deity but God, and I bear witness that Muhammad is His servant and His messenger. O Allah send your selawat upon Muhammad and upon the family of Muhammad, as you let it come upon Ibrahim and the family of Ibrahim. O Allah, bless Muhammad and the family of Muhammad, As You blessed Ibrahim and the family of Ibrahim. For verily, You are Praiseworthy and Glorious.",
-          audio: "ruku.mp3",
+          audio: "",
           words: [
             {
               a: "اَلتَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ لِلهِ",
@@ -1119,7 +1141,7 @@
         Salam: {
           title: "Salam",
           fullTrans: "Peace and blessings upon you",
-          audio: "ruku.mp3",
+          audio: "",
           words: [
             {
               a: "السَّلَامُ",
@@ -1184,10 +1206,10 @@
         const duration = sec.words.length * 2.5;
         wrapper.innerHTML = `
                             <div class="controls">
-                                <button class="play-pause-btn">▶</button>
-                                <input type="range" class="seek-bar" value="0" min="0" max="${duration}" step="0.1">
+                                <button class="play play-pause-btn" disabled>▶</button>
+                                <input disabled type="range" class="seek-bar" value="0" min="0" max="${duration}" step="0.1">
                                 <span class="time-display">0:00 / ${formatTime(duration)}</span>
-                                <input type="range" class="volume-bar" min="0" max="1" step="0.01" value="1">
+                                <input disabled type="range" class="volume-bar" min="0" max="1" step="0.01" value="1">
                             </div>
                             <div class="status"><div class="pulsing"></div> <span>Ready</span></div>
                         `;
@@ -1241,7 +1263,7 @@
           wordAudio = null;
         }
         // Create a new audio instance
-        wordAudio = new Audio("pronounce.mp3");
+        wordAudio = new Audio("");
         wordAudio.play();
       }
 
@@ -1386,7 +1408,7 @@
                                       <div class="tt-header">
                                           <button class="tt-close" onclick="closeTooltip(event)">×</button>
                                           <span class="tt-title" style="margin-left: 10px; flex: 1;">Pronunciation</span>
-                                          <button class="play-pronunciation" onclick="playWordAudio()">
+                                          <button class="play play-pronunciation" disabled onclick="playWordAudio()">
                                               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                                           </button>
                                       </div>
