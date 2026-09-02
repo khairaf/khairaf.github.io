@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Muslim's Day — Structured Around Prayer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      * {
+        scrollbar-width: none;
+      }
+      *::-webkit-scrollbar {
+        display: none;
+      }
+
+      :root {
+        --bg: #0b1622;
+        --card: #111e2e;
+        --fg: #e8dfc8;
+        --muted: #8a9bb0;
+        --sub: #b8a98a;
+        --gold: #c9a84c;
+        --border: rgba(201, 168, 76, 0.12);
+        --serif: "Lora", Georgia, serif;
+        --sans: "Outfit", system-ui, sans-serif;
+        --custom-col: #4ca8c9;
+        --custom-dim: rgba(76, 168, 201, 0.18);
+        --custom-bdr: rgba(76, 168, 201, 0.35);
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+      }
+
+      /* ── Header ── */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 24px;
+        background: rgba(11, 22, 34, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .h-label {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(201, 168, 76, 0.5);
+      }
+      header h1 {
+        font-family: var(--serif);
+        font-size: 18px;
+        color: var(--fg);
+        margin-top: 2px;
+      }
+      .h-adjust {
+        text-align: right;
+      }
+      .h-adjust p:first-child {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .h-adjust p:last-child {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--gold);
+      }
+
+      /* ── Hero ── */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 40px 24px 32px;
+        text-align: center;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      }
+      .hero-geo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 260px;
+        height: 260px;
+        opacity: 0.25;
+        pointer-events: none;
+      }
+      .bismillah {
+        font-family: var(--serif) !important;
+        font-size: 36px !important;
+        color: var(--gold) !important;
+        margin-bottom: 14px !important;
+        position: relative !important;
+        line-height: 1.5 !important;
+      }
+      .hero h2 {
+        font-family: var(--serif);
+        font-size: 22px;
+        color: var(--fg);
+        position: relative;
+      }
+      .hero h2.ital {
+        font-style: italic;
+        margin-bottom: 12px;
+      }
+      .hero p {
+        font-size: 13px;
+        color: var(--muted);
+        max-width: 460px;
+        margin: 0 auto;
+        position: relative;
+        line-height: 1.75;
+      }
+
+      /* ── Legend ── */
+      .legend {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 12px 24px;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .leg-prayer {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        background: rgba(201, 168, 76, 0.25);
+        border: 1px solid rgba(201, 168, 76, 0.5);
+        flex-shrink: 0;
+      }
+      .leg-activity {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--card);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        flex-shrink: 0;
+      }
+      .leg-custom {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--custom-dim);
+        border: 1px solid var(--custom-bdr);
+        flex-shrink: 0;
+      }
+
+      /* ── Schedule ── */
+      main {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 24px 16px 120px;
+      }
+
+      /* ── Prayer card ── */
+      .prayer-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          #1a2d1a 0%,
+          #162236 60%,
+          #1e2a18 100%
+        );
+        border: 1px solid rgba(201, 168, 76, 0.4);
+        box-shadow:
+          0 0 30px rgba(201, 168, 76, 0.08),
+          inset 0 1px 0 rgba(201, 168, 76, 0.15);
+        margin-bottom: 10px;
+      }
+      .gold-bar-top {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+      }
+      .gold-bar-bot {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(201, 168, 76, 0.4),
+          transparent
+        );
+      }
+      .p-inner {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 20px 24px;
+      }
+      .p-icon {
+        flex-shrink: 0;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        background: radial-gradient(
+          circle,
+          rgba(201, 168, 76, 0.2) 0%,
+          rgba(201, 168, 76, 0.05) 100%
+        );
+        border: 1px solid rgba(201, 168, 76, 0.5);
+      }
+      .p-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .p-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .p-names {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .p-name {
+        font-family: var(--serif);
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--gold);
+      }
+      .p-arabic {
+        font-family: var(--serif);
+        font-size: 17px;
+        color: var(--gold);
+        opacity: 0.55;
+      }
+      .p-meaning {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .p-time-block {
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .p-time {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--fg);
+        font-variant-numeric: tabular-nums;
+      }
+      .p-rakah {
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: rgba(201, 168, 76, 0.5);
+        margin-top: 4px;
+      }
+      .p-desc {
+        margin-top: 12px;
+        font-size: 13px;
+        line-height: 1.75;
+        color: var(--sub);
+      }
+      .p-geo {
+        position: absolute;
+        right: -16px;
+        bottom: -16px;
+        width: 112px;
+        height: 112px;
+        pointer-events: none;
+      }
+
+      /* ── Built-in activity ── */
+      .act-row {
+        display: flex;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .tl-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .tl-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--card);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        font-size: 13px;
+      }
+      .tl-line {
+        flex: 1;
+        width: 1px;
+        margin-top: 4px;
+        background: rgba(201, 168, 76, 0.12);
+      }
+      .act-content {
+        flex: 1;
+        border-radius: 6px;
+        padding: 12px 16px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        margin-bottom: 10px;
+      }
+      .act-content:hover {
+        background: rgba(17, 30, 46, 0.6);
+        border-color: rgba(201, 168, 76, 0.12);
+      }
+      .act-content.open {
+        background: var(--card);
+        border-color: rgba(201, 168, 76, 0.18);
+      }
+      .act-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .act-titles {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+      .act-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--fg);
+      }
+      .act-arabic {
+        font-family: var(--serif);
+        font-size: 12px;
+        color: var(--gold);
+        opacity: 0.4;
+      }
+      .act-meaning {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .act-time {
+        font-size: 12px;
+        color: var(--muted);
+        flex-shrink: 0;
+        margin-top: 2px;
+        font-variant-numeric: tabular-nums;
+      }
+      .act-desc {
+        font-size: 13px;
+        line-height: 1.75;
+        color: var(--sub);
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          margin-top 0.35s ease;
+      }
+      .act-desc.open {
+        max-height: 300px;
+        margin-top: 12px;
+      }
+      .act-hint {
+        font-size: 11px;
+        color: rgba(201, 168, 76, 0.4);
+        margin-top: 8px;
+      }
+
+      /* ── Custom activity ── */
+      .custom-row {
+        display: flex;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .custom-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--custom-dim);
+        border: 1px solid var(--custom-bdr);
+        font-size: 13px;
+      }
+      .custom-content {
+        flex: 1;
+        border-radius: 6px;
+        padding: 12px 16px;
+        cursor: pointer;
+        border: 1px solid var(--custom-bdr);
+        background: var(--custom-dim);
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .custom-content:hover {
+        background: rgba(76, 168, 201, 0.24);
+      }
+      .custom-content.open {
+        background: rgba(76, 168, 201, 0.22);
+        border-color: rgba(76, 168, 201, 0.5);
+      }
+      .custom-badge {
+        display: inline-block;
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--custom-col);
+        background: rgba(76, 168, 201, 0.15);
+        border: 1px solid rgba(76, 168, 201, 0.3);
+        border-radius: 3px;
+        padding: 1px 5px;
+        margin-left: 6px;
+        vertical-align: middle;
+      }
+      .custom-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--fg);
+      }
+      .custom-meaning {
+        font-size: 11px;
+        color: rgba(76, 168, 201, 0.7);
+        margin-top: 2px;
+      }
+      .custom-time {
+        font-size: 12px;
+        color: rgba(76, 168, 201, 0.6);
+        flex-shrink: 0;
+        margin-top: 2px;
+        font-variant-numeric: tabular-nums;
+      }
+      .custom-desc {
+        font-size: 13px;
+        line-height: 1.75;
+        color: var(--sub);
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          margin-top 0.35s ease;
+      }
+      .custom-desc.open {
+        max-height: 300px;
+        margin-top: 12px;
+      }
+      .custom-hint {
+        font-size: 11px;
+        color: rgba(76, 168, 201, 0.4);
+        margin-top: 8px;
+      }
+      .delete-btn {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: rgba(76, 168, 201, 0.35);
+        font-size: 16px;
+        line-height: 1;
+        transition: color 0.15s;
+        padding: 2px 4px;
+      }
+      .delete-btn:hover {
+        color: rgba(220, 80, 80, 0.8);
+      }
+
+      /* ── FAB ── */
+      .fab {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 50;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: #0b1622;
+        border: none;
+        cursor: pointer;
+        font-size: 26px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 24px rgba(201, 168, 76, 0.4);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .fab:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 32px rgba(201, 168, 76, 0.55);
+      }
+      .fab:active {
+        transform: scale(0.96);
+      }
+
+      /* ── Modal overlay ── */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(5, 12, 22, 0.8);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* ── Modal box ── */
+      .modal {
+        background: #111e2e;
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        border-radius: 12px;
+        padding: 28px 28px 24px;
+        width: 100%;
+        max-width: 460px;
+        transform: translateY(16px);
+        transition: transform 0.25s;
+      }
+      .overlay.open .modal {
+        transform: translateY(0);
+      }
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 22px;
+      }
+      .modal-title {
+        font-family: var(--serif);
+        font-size: 18px;
+        color: var(--fg);
+      }
+      .modal-close {
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 22px;
+        cursor: pointer;
+        line-height: 1;
+        padding: 2px;
+      }
+      .modal-close:hover {
+        color: var(--fg);
+      }
+
+      .field {
+        margin-bottom: 16px;
+      }
+      .field label {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .field input,
+      .field textarea,
+      .field select {
+        width: 100%;
+        background: #0b1622;
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 6px;
+        color: var(--fg);
+        font-family: var(--sans);
+        font-size: 14px;
+        padding: 10px 12px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .field input:focus,
+      .field textarea:focus,
+      .field select:focus {
+        border-color: rgba(201, 168, 76, 0.55);
+      }
+      .field textarea {
+        resize: vertical;
+        min-height: 76px;
+        line-height: 1.6;
+      }
+      .field select option {
+        background: #111e2e;
+      }
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 22px;
+      }
+      .btn-cancel {
+        background: none;
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: 6px;
+        color: var(--muted);
+        font-family: var(--sans);
+        font-size: 13px;
+        padding: 9px 18px;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .btn-cancel:hover {
+        border-color: rgba(201, 168, 76, 0.4);
+        color: var(--fg);
+      }
+      .btn-save {
+        background: var(--gold);
+        border: none;
+        border-radius: 6px;
+        color: #0b1622;
+        font-family: var(--sans);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 9px 22px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      .btn-save:hover {
+        opacity: 0.88;
+      }
+
+      /* ── Footer ── */
+      footer {
+        border-top: 1px solid rgba(201, 168, 76, 0.1);
+        padding: 32px 24px;
+        text-align: center;
+      }
+      footer blockquote {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 14px;
+        color: rgba(201, 168, 76, 0.6);
+        line-height: 1.7;
+      }
+      footer cite {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 6px;
+        font-style: normal;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 500px) {
+        .p-name {
+          font-size: 17px;
+        }
+        .p-time {
+          font-size: 16px;
+        }
+        .bismillah {
+          font-size: 26px !important;
+        }
+        header h1 {
+          font-size: 15px;
+        }
+        .p-inner {
+          gap: 14px;
+          padding: 16px;
+        }
+        .p-icon {
+          width: 44px;
+          height: 44px;
+          font-size: 20px;
+        }
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+        .modal {
+          padding: 22px 18px 18px;
+        }
+        .fab {
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div>
+        <p class="h-label">A Muslim's Day</p>
+        <h1>Structured Around Prayer</h1>
+      </div>
+      <div class="h-adjust">
+        <p>[Sample times]</p>
+        <p>Adjust to your city</p>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero">
+      <svg
+        class="hero-geo"
+        viewBox="0 0 120 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g stroke="#c9a84c" stroke-width="0.8">
+          <polygon points="60,2 112,30 112,90 60,118 8,90 8,30" />
+          <polygon points="60,14 100,35 100,85 60,106 20,85 20,35" />
+          <polygon points="60,26 88,41 88,79 60,94 32,79 32,41" />
+          <line x1="60" y1="2" x2="60" y2="118" />
+          <line x1="8" y1="30" x2="112" y2="90" />
+          <line x1="112" y1="30" x2="8" y2="90" />
+        </g>
+      </svg>
+      <p class="bismillah">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+      <h2>In the Name of Allah,</h2>
+      <h2 class="ital">the Most Gracious, the Most Merciful</h2>
+      <p>
+        Five prayers anchor the Muslim day. Everything else — work, rest,
+        family, reflection — flows between them. Tap any activity to read its
+        meaning.
+      </p>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="leg-prayer"></div>
+        Obligatory Prayer
+      </div>
+      <div class="legend-item">
+        <div class="leg-activity"></div>
+        Sunnah / Activity
+      </div>
+      <div class="legend-item">
+        <div class="leg-custom"></div>
+        My Activity
+      </div>
+    </div>
+
+    <!-- Schedule -->
+    <main id="schedule"></main>
+
+    <!-- Footer -->
+    <footer>
+      <blockquote>
+        "Indeed, prayer has been decreed upon the believers a decree of
+        specified times."
+      </blockquote>
+      <cite>— Surah An-Nisa, 4:103</cite>
+    </footer>
+
+    <!-- FAB -->
+    <button class="fab" onclick="openModal()" title="Add your own activity">
+      +
+    </button>
+
+    <!-- Modal -->
+    <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Add Your Activity</h2>
+          <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+
+        <div class="field">
+          <label>Activity Name</label>
+          <input type="text" id="f-title" placeholder="e.g. Drilling Arabic" />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Time</label>
+            <input type="text" id="f-time" placeholder="e.g. 8:00 – 9:00 AM" />
+          </div>
+          <div class="field">
+            <label>Icon (emoji)</label>
+            <input
+              type="text"
+              id="f-icon"
+              placeholder="e.g. 📖"
+              maxlength="4"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label
+            >Short Label
+            <span
+              style="font-size: 10px; text-transform: none; letter-spacing: 0"
+              >(shown under the name)</span
+            ></label
+          >
+          <input
+            type="text"
+            id="f-meaning"
+            placeholder="e.g. Language Practice"
+          />
+        </div>
+
+        <div class="field">
+          <label>Place it after…</label>
+          <select id="f-after"></select>
+        </div>
+
+        <div class="field">
+          <label
+            >Description
+            <span
+              style="font-size: 10px; text-transform: none; letter-spacing: 0"
+              >(optional)</span
+            ></label
+          >
+          <textarea
+            id="f-desc"
+            placeholder="Why this matters to you, what you'll do, etc."
+          ></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button class="btn-save" onclick="saveActivity()">
+            Add to Schedule
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ─── Geometric SVG corner ─── */
+      const GEO = `<svg class="p-geo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.18" stroke="#c9a84c" stroke-width="0.8">
+      <polygon points="60,2 112,30 112,90 60,118 8,90 8,30"/>
+      <polygon points="60,14 100,35 100,85 60,106 20,85 20,35"/>
+      <polygon points="60,26 88,41 88,79 60,94 32,79 32,41"/>
+      <line x1="60" y1="2" x2="60" y2="118"/>
+      <line x1="8" y1="30" x2="112" y2="90"/>
+      <line x1="112" y1="30" x2="8" y2="90"/>
+    </g>
+  </svg>`;
+
+      /* ─── Built-in schedule ─── */
+      const BASE = [
+        {
+          id: "tahajjud",
+          type: "activity",
+          icon: "🌙",
+          title: "Tahajjud & Du'a",
+          arabic: "تهجد",
+          time: "~3:30 AM – 4:37 AM",
+          meaning: "Night Vigil & Supplication",
+          desc: "Waking before dawn to stand before Allah in voluntary prayer. This is a time when Allah descends to the lowest heaven, closest to His servants — making it the most powerful window for sincere supplication for your needs and the day ahead.",
+        },
+        {
+          id: "fajr",
+          type: "prayer",
+          icon: "☀️",
+          title: "Fajr",
+          arabic: "الفجر",
+          time: "4:37 AM",
+          meaning: "Dawn Prayer",
+          desc: "The first obligatory prayer, marking the true start of the Muslim day. Prayed in the stillness before sunrise, it sets a spiritual tone for everything that follows.",
+          rakah: "2 Sunnah · 2 Fardh",
+        },
+        {
+          id: "adhkar-m",
+          type: "activity",
+          icon: "📿",
+          title: "Morning Adhkar",
+          arabic: "أذكار الصباح",
+          time: "4:55 AM – 5:15 AM",
+          meaning: "Morning Remembrances",
+          desc: "Remaining seated after Fajr to recite specific remembrances — glorifying Allah, seeking protection, and drawing blessings. These adhkar serve as a spiritual shield that guards the believer until evening.",
+        },
+        {
+          id: "duha",
+          type: "activity",
+          icon: "⚡",
+          title: "Duha & Productive Zone",
+          arabic: "الضحى",
+          time: "~8:00 AM – 11:56 AM",
+          meaning: "Morning Vitality & Work",
+          desc: "Your primary block for work, study, and daily responsibilities. A sincere intention (niyyah) to earn a lawful living for your family transforms ordinary labor into an act of worship. The voluntary Duha prayer (2–8 rak'ahs) can also be prayed during this window.",
+        },
+        {
+          id: "dhuhr",
+          type: "prayer",
+          icon: "🌤️",
+          title: "Dhuhr",
+          arabic: "الظهر",
+          time: "11:56 AM",
+          meaning: "Noon Prayer",
+          desc: "Performed after the sun passes its zenith, Dhuhr is a midday pause to disconnect from the world and reconnect with Allah. It anchors the transition from morning productivity to afternoon focus.",
+          rakah: "4 Sunnah · 4 Fardh · 2 Sunnah",
+        },
+        {
+          id: "reset",
+          type: "activity",
+          icon: "☕",
+          title: "Afternoon Reset",
+          arabic: "القيلولة",
+          time: "1:00 PM – 3:13 PM",
+          meaning: "Rest & Renewal",
+          desc: "Return to your work or studies with renewed energy. A short midday nap (qaylulah) is an established Sunnah practice — a small investment that sharpens focus and restores vitality for the second half of the day.",
+        },
+        {
+          id: "asr",
+          type: "prayer",
+          icon: "🌇",
+          title: "Asr",
+          arabic: "العصر",
+          time: "3:13 PM",
+          meaning: "Afternoon Prayer",
+          desc: "The mid-afternoon checkpoint. The Prophet ﷺ warned gravely against missing Asr — it is the prayer sworn by in the Quran. A moment to refocus intentions before the day's close.",
+          rakah: "4 Fardh",
+        },
+        {
+          id: "adhkar-e",
+          type: "activity",
+          icon: "📿",
+          title: "Evening Adhkar",
+          arabic: "أذكار المساء",
+          time: "3:30 PM – 5:56 PM",
+          meaning: "Evening Remembrances",
+          desc: "Recite the evening adhkar for protection through the night. This is also a quiet window for reflection — reviewing intentions, correcting mistakes, and softening the heart before Maghrib.",
+        },
+        {
+          id: "maghrib",
+          type: "prayer",
+          icon: "🌅",
+          title: "Maghrib",
+          arabic: "المغرب",
+          time: "5:56 PM",
+          meaning: "Sunset Prayer",
+          desc: "Prayed immediately after sunset, Maghrib is often a time for family, warmth, and breaking the fast (if fasting). Its window is brief — pray promptly as the red glow fades from the horizon.",
+          rakah: "3 Fardh · 2 Sunnah",
+        },
+        {
+          id: "dinner",
+          type: "activity",
+          icon: "🍽️",
+          title: "Dinner & Family Time",
+          arabic: "العشاء والأسرة",
+          time: "6:15 PM – 7:04 PM",
+          meaning: "Shared Nourishment",
+          desc: "Sharing a meal and presence with family is a Sunnah practice. When done with the right intention, even conversation and laughter around the table becomes an act of worship and a building block of a blessed household.",
+        },
+        {
+          id: "isha",
+          type: "prayer",
+          icon: "🌌",
+          title: "Isha",
+          arabic: "العشاء",
+          time: "7:04 PM",
+          meaning: "Night Prayer",
+          desc: "The final obligatory prayer of the day. After Isha, unnecessary late-night socializing is discouraged — the night belongs to rest, worship, and preparation for tomorrow's Fajr.",
+          rakah: "4 Sunnah · 4 Fardh · 2 Sunnah · 3 Witr",
+        },
+        {
+          id: "sleep",
+          type: "activity",
+          icon: "🌙",
+          title: "Night Review & Sleep",
+          arabic: "المراجعة والنوم",
+          time: "~9:00 PM",
+          meaning: "Reflection & Rest",
+          desc: "Before sleeping, review the day with honesty. Seek forgiveness for shortcomings (istighfar). Perform wudu, dust your bed three times, and recite the protective verses. Sleep itself becomes worship when entered with the right intention.",
+        },
+      ];
+
+      /* ─── LocalStorage ─── */
+      const STORAGE_KEY = "muslim-day-custom";
+
+      function loadCustom() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch {
+          return [];
+        }
+      }
+      function saveCustom(arr) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+      }
+
+      /* ─── Merge base + custom into one ordered list ─── */
+      function buildMerged(customs) {
+        const result = [];
+        BASE.forEach((entry) => {
+          result.push(entry);
+          const after = customs.filter((c) => c.afterId === entry.id);
+          after.forEach((c) => result.push(c));
+        });
+        return result;
+      }
+
+      /* ─── Rendering ─── */
+      let toggleState = {};
+
+      function prayerHTML(e) {
+        return `<div class="prayer-card">
+      <div class="gold-bar-top"></div>
+      <div class="p-inner">
+        <div class="p-icon">${e.icon}</div>
+        <div class="p-body">
+          <div class="p-top">
+            <div>
+              <div class="p-names">
+                <span class="p-name">${e.title.toUpperCase()}</span>
+                <span class="p-arabic">${e.arabic}</span>
+              </div>
+              <p class="p-meaning">${e.meaning}</p>
+            </div>
+            <div class="p-time-block">
+              <div class="p-time">${e.time}</div>
+              ${e.rakah ? `<div class="p-rakah">${e.rakah}</div>` : ""}
+            </div>
+          </div>
+          <p class="p-desc">${e.desc}</p>
+        </div>
+      </div>
+      <div class="gold-bar-bot"></div>
+      ${GEO}
+    </div>`;
+      }
+
+      function activityHTML(e, uid) {
+        const open = toggleState[uid] ? " open" : "";
+        return `<div class="act-row">
+      <div class="tl-col">
+        <div class="tl-dot">${e.icon}</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="act-content${open}" id="ac-${uid}" onclick="toggle('${uid}')">
+        <div class="act-header">
+          <div>
+            <div class="act-titles">
+              <span class="act-name">${e.title}</span>
+              <span class="act-arabic">${e.arabic || ""}</span>
+            </div>
+            <p class="act-meaning">${e.meaning}</p>
+          </div>
+          <span class="act-time">${e.time}</span>
+        </div>
+        <div class="act-desc${open}" id="ad-${uid}">${e.desc}</div>
+        <p class="act-hint" id="ah-${uid}" ${open ? 'style="display:none"' : ""}>tap to read more</p>
+      </div>
+    </div>`;
+      }
+
+      function customHTML(e) {
+        const uid = e.id;
+        const open = toggleState[uid] ? " open" : "";
+        return `<div class="custom-row">
+      <div class="tl-col">
+        <div class="custom-dot">${e.icon || "✦"}</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="custom-content${open}" id="ac-${uid}" onclick="toggle('${uid}')">
+        <button class="delete-btn" onclick="deleteCustom(event,'${uid}')" title="Remove">×</button>
+        <div class="act-header">
+          <div>
+            <div class="act-titles">
+              <span class="custom-name">${e.title}</span>
+              <span class="custom-badge">My Activity</span>
+            </div>
+            <p class="custom-meaning">${e.meaning || ""}</p>
+          </div>
+          <span class="custom-time">${e.time || ""}</span>
+        </div>
+        ${
+          e.desc
+            ? `<div class="custom-desc${open}" id="ad-${uid}">${e.desc}</div>
+        <p class="act-hint custom-hint" id="ah-${uid}" ${open ? 'style="display:none"' : ""}>tap to read more</p>`
+            : ""
+        }
+      </div>
+    </div>`;
+      }
+
+      function render() {
+        const customs = loadCustom();
+        const merged = buildMerged(customs);
+        const container = document.getElementById("schedule");
+        container.innerHTML = "";
+
+        merged.forEach((entry, i) => {
+          const uid = entry.id || "entry-" + i;
+          const wrap = document.createElement("div");
+
+          if (entry.type === "prayer") {
+            wrap.innerHTML = prayerHTML(entry);
+          } else if (entry.custom) {
+            wrap.innerHTML = customHTML(entry);
+          } else {
+            wrap.innerHTML = activityHTML(entry, uid);
+          }
+          container.appendChild(wrap.firstElementChild);
+        });
+
+        populateSelect(customs);
+      }
+
+      /* ─── Toggle expand ─── */
+      function toggle(uid) {
+        toggleState[uid] = !toggleState[uid];
+        const box = document.getElementById("ac-" + uid);
+        const desc = document.getElementById("ad-" + uid);
+        const hint = document.getElementById("ah-" + uid);
+        if (!desc) return;
+        const open = toggleState[uid];
+        desc.classList.toggle("open", open);
+        box.classList.toggle("open", open);
+        if (hint) hint.style.display = open ? "none" : "";
+      }
+
+      /* ─── Delete custom ─── */
+      function deleteCustom(e, uid) {
+        e.stopPropagation();
+        const customs = loadCustom().filter((c) => c.id !== uid);
+        saveCustom(customs);
+        delete toggleState[uid];
+        render();
+      }
+
+      /* ─── Modal ─── */
+      function openModal() {
+        document.getElementById("overlay").classList.add("open");
+        document.getElementById("f-title").focus();
+      }
+      function closeModal() {
+        document.getElementById("overlay").classList.remove("open");
+        clearForm();
+      }
+      function handleOverlayClick(e) {
+        if (e.target === document.getElementById("overlay")) closeModal();
+      }
+      function clearForm() {
+        ["f-title", "f-time", "f-icon", "f-meaning", "f-desc"].forEach((id) => {
+          document.getElementById(id).value = "";
+        });
+      }
+
+      /* ─── Populate the "place after" select ─── */
+      function populateSelect(customs) {
+        const sel = document.getElementById("f-after");
+        const merged = buildMerged(customs);
+        sel.innerHTML = "";
+        merged.forEach((entry) => {
+          const opt = document.createElement("option");
+          opt.value = entry.id;
+          const label = entry.custom
+            ? `✦ ${entry.title}`
+            : `${entry.icon} ${entry.title}`;
+          opt.textContent = label;
+          sel.appendChild(opt);
+        });
+        // Default to last built-in before sleep
+        sel.value = "isha";
+      }
+
+      /* ─── Save new activity ─── */
+      function saveActivity() {
+        const title = document.getElementById("f-title").value.trim();
+        const time = document.getElementById("f-time").value.trim();
+        const icon = document.getElementById("f-icon").value.trim() || "✦";
+        const meaning = document.getElementById("f-meaning").value.trim();
+        const desc = document.getElementById("f-desc").value.trim();
+        const afterId = document.getElementById("f-after").value;
+
+        if (!title) {
+          document.getElementById("f-title").focus();
+          document.getElementById("f-title").style.borderColor =
+            "rgba(220,80,80,0.7)";
+          setTimeout(
+            () => (document.getElementById("f-title").style.borderColor = ""),
+            1200,
+          );
+          return;
+        }
+
+        const newEntry = {
+          id: "custom-" + Date.now(),
+          custom: true,
+          icon,
+          title,
+          time,
+          meaning,
+          desc,
+          afterId,
+        };
+
+        const customs = loadCustom();
+        customs.push(newEntry);
+        saveCustom(customs);
+        closeModal();
+        render();
+
+        // Scroll to the new entry after render
+        setTimeout(() => {
+          const el = document.getElementById("ac-" + newEntry.id);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 80);
+      }
+
+      /* ─── Keyboard shortcuts ─── */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+        if (e.key === "Enter" && e.metaKey) saveActivity();
+      });
+
+      /* ─── Init ─── */
+      render();
+    </script>
+  </body>
+</html>
